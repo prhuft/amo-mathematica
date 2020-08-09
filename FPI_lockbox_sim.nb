@@ -1,0 +1,834 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     34534,        826]
+NotebookOptionsPosition[     32751,        760]
+NotebookOutlinePosition[     33099,        775]
+CellTagsIndexPosition[     33056,        772]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Fabry-Perot Interferometer", "Section",
+ CellChangeTimes->{{3.742048131056574*^9, 3.7420481623327303`*^9}, {
+  3.7420628012632484`*^9, 3.742062823298311*^9}, {3.7421685844432874`*^9, 
+  3.742168603824439*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+A Fabry-Perot interferometer can be used to filter out the carrier frequency \
+of an input beam with frequency sidebands. This is achieved by having the \
+mean FSR be approximately the frequency separation of the two sidebands, and \
+not scanning far enough to allow mode support for the carrier. \
+\>", "Subsection",
+ CellChangeTimes->{{3.7420531051936207`*^9, 3.7420532398666725`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+The parameters below describe input frequency (carrier and sidebands), and \
+the cavity properties, excluding mirror properties which are irrelevant here. \
+\>", "Subsubsection",
+ CellChangeTimes->{{3.7420628476423416`*^9, 3.7420629453059406`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"c", " ", "=", " ", 
+   RowBox[{"3", "*", 
+    SuperscriptBox["10", "8"]}]}], ";", 
+  RowBox[{"\[Nu]d", " ", "=", " ", 
+   RowBox[{"5.7", "*", 
+    SuperscriptBox["10", "10"]}]}], ";", " ", 
+  RowBox[{"\[Nu]0", " ", "=", " ", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"7.8", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "7"}]]}], "c"], "-", "\[Nu]d"}]}], ";", " ", 
+  RowBox[{"\[Nu]s", " ", "=", " ", 
+   RowBox[{"3.417", "*", 
+    SuperscriptBox["10", "9"]}]}], ";", 
+  RowBox[{"\[Nu]min", "=", 
+   RowBox[{"\[Nu]0", "-", "\[Nu]s"}]}], ";", 
+  RowBox[{"\[Nu]max", " ", "=", 
+   RowBox[{"\[Nu]0", "+", "\[Nu]s"}]}], ";", " ", 
+  RowBox[{"FSR0", " ", "=", " ", 
+   RowBox[{"6.8", "*", 
+    SuperscriptBox["10", "9"]}]}], ";", " ", 
+  RowBox[{"L0", " ", "=", " ", 
+   FractionBox["c", 
+    RowBox[{"2", "*", "FSR0"}]]}], ";", " ", 
+  RowBox[{"\[Tau]", " ", "=", " ", 
+   SuperscriptBox["10", 
+    RowBox[{"-", "3"}]]}], ";"}]], "Input",
+ CellChangeTimes->{{3.742053260239216*^9, 3.742053418357927*^9}, {
+  3.7420534817872486`*^9, 3.742053637675994*^9}, {3.7420536827285066`*^9, 
+  3.742053834797865*^9}, {3.7420563531093836`*^9, 3.742056368907096*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"L", "[", 
+    RowBox[{"t_", ",", "\[CapitalDelta]L_", ",", "\[Phi]_"}], "]"}], ":=", 
+   " ", 
+   RowBox[{"Piecewise", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           FractionBox[
+            RowBox[{"4", "*", "\[CapitalDelta]L"}], "\[Tau]"], 
+           RowBox[{"(", 
+            RowBox[{"t", "+", "\[Phi]"}], ")"}]}], "+", "L0", "-", 
+          "\[CapitalDelta]L"}], ",", 
+         RowBox[{
+          RowBox[{"0", "<=", "t"}], " ", "&&", " ", 
+          RowBox[{"t", "<=", 
+           RowBox[{"\[Tau]", "/", "2"}]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           FractionBox[
+            RowBox[{
+             RowBox[{"-", "4"}], "*", "\[CapitalDelta]L"}], "\[Tau]"], 
+           RowBox[{"(", 
+            RowBox[{"t", "-", "\[Phi]"}], ")"}]}], "+", "L0", "+", 
+          RowBox[{"3", "*", "\[CapitalDelta]L"}]}], ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"\[Tau]", "/", "2"}], "<", "t"}], " ", "&&", " ", 
+          RowBox[{"t", "<=", "\[Tau]"}]}]}], "}"}]}], "}"}], ",", "0"}], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.742060864614386*^9, 3.7420608802420607`*^9}, {
+   3.742060934941085*^9, 3.7420611112879457`*^9}, {3.742061148545312*^9, 
+   3.7420612539377146`*^9}, 3.742061296354737*^9, {3.7420615865573626`*^9, 
+   3.7420617069034686`*^9}, {3.742061784976619*^9, 3.7420618051845264`*^9}, {
+   3.7420619142743597`*^9, 3.7420619378525515`*^9}, {3.742061970541077*^9, 
+   3.74206199555018*^9}, {3.742062324379768*^9, 3.7420623629127283`*^9}, {
+   3.7420626902973166`*^9, 3.7420626909157915`*^9}, {3.742097091091794*^9, 
+   3.742097109570256*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"L", "[", 
+      RowBox[{"t", ",", 
+       RowBox[{"Gain", "*", "L0"}], ",", 
+       RowBox[{"VertOffset", "*", "L0"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "\[Tau]"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"L0", 
+         RowBox[{"(", 
+          RowBox[{"1", "-", "0.1"}], ")"}]}], ",", 
+        RowBox[{"L0", "*", 
+         RowBox[{"(", "1.1", ")"}]}]}], "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Gain", ",", "0.05"}], "}"}], ",", "0.001", ",", ".1"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"VertOffset", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", ".01"}], ",", ".01"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7420618181718225`*^9, 3.7420619116473494`*^9}, {
+  3.7420619428172455`*^9, 3.742061963108991*^9}, {3.742062015852869*^9, 
+  3.7420622496513696`*^9}, {3.7420623716602964`*^9, 3.7420624587968006`*^9}, {
+  3.742062498878688*^9, 3.7420625655363665`*^9}, {3.7420626255547957`*^9, 
+  3.742062655455515*^9}, {3.7420627029755807`*^9, 3.74206277431834*^9}, {
+  3.7420970556290426`*^9, 3.7420970603640246`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`Gain$$ = 
+    0.039700000000000006`, $CellContext`VertOffset$$ = 0.009550000000000001, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$, 
+    Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`Gain$$], 0.05}, 0.001, 0.1}, {{
+       Hold[$CellContext`VertOffset$$], 0}, -0.01, 0.01}}, Typeset`size$$ = {
+    360., {108., 114.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`Gain$108357$$ = 
+    0, $CellContext`VertOffset$108358$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`Gain$$ = 0.05, $CellContext`VertOffset$$ = 
+        0}, "ControllerVariables" :> {
+        Hold[$CellContext`Gain$$, $CellContext`Gain$108357$$, 0], 
+        Hold[$CellContext`VertOffset$$, $CellContext`VertOffset$108358$$, 0]},
+       "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[
+        $CellContext`L[$CellContext`t, $CellContext`Gain$$ $CellContext`L0, \
+$CellContext`VertOffset$$ $CellContext`L0], {$CellContext`t, 
+         0, $CellContext`\[Tau]}, 
+        PlotRange -> {$CellContext`L0 (1 - 0.1), $CellContext`L0 1.1}], 
+      "Specifications" :> {{{$CellContext`Gain$$, 0.05}, 0.001, 
+         0.1}, {{$CellContext`VertOffset$$, 0}, -0.01, 0.01}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{411., {169., 175.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.742062016375471*^9, {3.7420620584121275`*^9, 3.742062081605647*^9}, {
+   3.7420621252176313`*^9, 3.7420621659292507`*^9}, 3.742062252192651*^9, 
+   3.742062440719119*^9, {3.742062542871142*^9, 3.7420625661506968`*^9}, 
+   3.7420626594077883`*^9, {3.7420627162097654`*^9, 3.742062774758222*^9}, 
+   3.7420971144002194`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+The supported cavity modes, i.e. resonant frequencies for an FP of length L \
+are given by \[Lambda] = 2L/n, where n is the number of wavelengths present \
+in the cavity. By c = \[Lambda]\[Nu], the spacing between harmonics in \
+frequency space is c/2L, which is the so-called free spectral range (FSR) of \
+the cavity, as there are no supported frequency modes within that range. For \
+very small modulation \[CapitalDelta]L<<L of the cavity length, this FSR is \
+roughly constant, and will generally be used to describe a FP cavity even if \
+the length is being modulated. The supported modes can be represented as a \
+Dirac comb with each Delta function spaced by the FSR and with the same \
+magnitude. The output of a FP cavity then, is the overlap of the input \
+f(\[Nu]) with the Dirac comb. I define a Dirac comb representation with \
+Lorentzian functions below,\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.742062962439145*^9, 3.7420631408861856`*^9}, {
+  3.7420633835131626`*^9, 3.7420636290014505`*^9}, {3.742096561216956*^9, 
+  3.7420965941124887`*^9}, {3.742096988795826*^9, 3.7420970043652987`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"LorentzComb", "[", 
+    RowBox[{"x_", ",", "\[CapitalDelta]x_", ",", "N_", ",", "n0_"}], "]"}], ":=",
+    " ", 
+   RowBox[{"Sum", "[", 
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{"1", "+", 
+       RowBox[{"1000", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"x", "-", 
+           RowBox[{"\[CapitalDelta]x", "*", 
+            RowBox[{"(", 
+             RowBox[{"n0", "+", "n"}], ")"}]}]}], ")"}], "2"]}]}]], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", 
+       RowBox[{"-", "N"}], ",", "N"}], "}"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7420636331274157`*^9, 3.74206363894341*^9}, {
+   3.7420940195661507`*^9, 3.7420940197167854`*^9}, {3.74209457093979*^9, 
+   3.74209461202684*^9}, {3.742094646023986*^9, 3.742094653205991*^9}, {
+   3.7420947293873606`*^9, 3.7420947298959713`*^9}, {3.7420963294360256`*^9, 
+   3.7420965585690775`*^9}, {3.7420967374528723`*^9, 3.742096744999586*^9}, {
+   3.7420975218442183`*^9, 3.742097559405775*^9}, 3.742097620648188*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"InputNu", "[", 
+    RowBox[{"\[Omega]_", ",", "\[Omega]0_", ",", "decay_"}], "]"}], ":=", 
+   FractionBox["1", 
+    RowBox[{"1", "+", 
+     RowBox[{"decay", " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"\[Omega]", "-", "\[Omega]0"}], ")"}], "2"]}]}]]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.742100072090717*^9, 3.7421001035445776`*^9}, {
+  3.7421001639683805`*^9, 3.7421001783929367`*^9}, {3.7421282121504307`*^9, 
+  3.742128252051697*^9}, {3.7421323103347554`*^9, 3.742132328140907*^9}}]
+}, Open  ]],
+
+Cell["\<\
+When the animations below are played, the rise and fall of different \
+frequencies occur as the cavity FSR is modulated, such that modes come into \
+and out of resonance periodically in time. Of course, the time domain signal \
+is what we see on an oscilloscope, so the fall rise of peaks here would \
+appear spaced out on the oscilloscope at fixed temporal intervals. These time \
+intervals correspond directly to cavity FSR, which if varied by small enough \
+amount (as it usually is), is the essentially the same for each period \
+between peaks. Obviously, in the plot below the FSR is changing, but this \
+modulation is exaggerated intentionally. \
+\>", "Subsubsection",
+ CellChangeTimes->{{3.7420995157915564`*^9, 3.7420998392533092`*^9}, {
+  3.742100554400031*^9, 3.7421005907818785`*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Case 1: Input Linewidth > FSR", "Subchapter",
+ CellChangeTimes->{{3.742100595383532*^9, 3.742100613346503*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+More than one cavity mode is supported at any given time, as the frequency \
+linewidth extends farther than one cavity FSR. In other words, the input \
+frequency spectrum contains more than one of the cavity harmonics, so more \
+than one standing wave can be created in the cavity at a time. These cavity \
+harmonics shift as the cavity length is varied, allowing us to scan over the \
+whole input linewidth in time.  
+
+To-do: replace \[Beta] Sin[x]+2 w/ triangle ramp signal above. Don\
+\[CloseCurlyQuote]t try plotting it on top of the cavity spectral output \
+though -- it\[CloseCurlyQuote]s in the time domain. \
+\>", "Subsubsection",
+ CellChangeTimes->{{3.742100620817518*^9, 3.7421008170747924`*^9}, {
+  3.7421278639779654`*^9, 3.742127911036089*^9}, {3.7421279815254354`*^9, 
+  3.742128043234974*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"BroadInput", "[", 
+    RowBox[{"\[Nu]_", ",", "\[Nu]0_"}], "]"}], ":=", 
+   RowBox[{"InputNu", "[", 
+    RowBox[{"\[Nu]", ",", "\[Nu]0", ",", "1"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7421323414716873`*^9, 3.742132379735446*^9}, {
+  3.742132421245821*^9, 3.7421324261817384`*^9}, {3.7421325921192455`*^9, 
+  3.742132613112056*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"LorentzComb", "[", 
+        RowBox[{"\[Nu]", ",", 
+         RowBox[{
+          RowBox[{"\[Beta]", "*", 
+           RowBox[{"Sin", "[", "t", "]"}]}], "+", "2"}], ",", "10", ",", 
+         "H"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"BroadInput", "[", 
+         RowBox[{"\[Nu]", ",", "5"}], "]"}], "*", 
+        RowBox[{"LorentzComb", "[", 
+         RowBox[{"\[Nu]", ",", 
+          RowBox[{
+           RowBox[{"\[Beta]", "*", 
+            RowBox[{"Sin", "[", "t", "]"}]}], "+", "2"}], ",", "10", ",", 
+          "H"}], "]"}]}], ",", 
+       RowBox[{"BroadInput", "[", 
+        RowBox[{"\[Nu]", ",", "5"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\[Nu]", ",", "0", ",", "10"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}], ",", 
+     RowBox[{"Background", "\[Rule]", "Black"}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Cavity Harmonics\>\"", ",", "\"\<Ouput spectrum\>\"", ",", 
+        "\"\<Input spectrum\>\""}], "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "\[Pi]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Beta]", ",", ".44"}], "}"}], ",", ".1", ",", "1"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"H", ",", ".172"}], "}"}], ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.74209724559752*^9, 3.7420974628082347`*^9}, {
+   3.742097565629099*^9, 3.742097608658249*^9}, {3.742097641916417*^9, 
+   3.7420976490443225`*^9}, {3.7420977263759017`*^9, 
+   3.7420977693022933`*^9}, {3.7420978014781923`*^9, 3.742097803401079*^9}, {
+   3.742097840943466*^9, 3.742097874690153*^9}, {3.74209792283083*^9, 
+   3.742097941535782*^9}, {3.742098111505121*^9, 3.7420981170138264`*^9}, {
+   3.7420981489612455`*^9, 3.7420981540735674`*^9}, {3.742098196389414*^9, 
+   3.742098202400896*^9}, {3.7420982337608733`*^9, 3.742098369669536*^9}, {
+   3.7420984457339725`*^9, 3.7420984458804502`*^9}, {3.7420985554616985`*^9, 
+   3.742098583887699*^9}, {3.7420986520549674`*^9, 3.742098852136613*^9}, {
+   3.742098924191019*^9, 3.742099070483528*^9}, {3.742099202634157*^9, 
+   3.74209926822189*^9}, {3.7420993898127775`*^9, 3.74209939611963*^9}, 
+   3.742099885898768*^9, {3.7420999359278097`*^9, 3.742099973945159*^9}, {
+   3.7421000159209704`*^9, 3.7421000236981287`*^9}, {3.742100060817875*^9, 
+   3.7421000689261446`*^9}, {3.7421001833845806`*^9, 3.742100209171632*^9}, {
+   3.7421002859951315`*^9, 3.7421003208728385`*^9}, {3.742100379367239*^9, 
+   3.742100385682516*^9}, {3.7421004881672*^9, 3.7421004906026845`*^9}, {
+   3.742128266315539*^9, 3.7421282720771675`*^9}, {3.7421293375431795`*^9, 
+   3.742129477893979*^9}, {3.742132368311914*^9, 3.742132446948065*^9}, {
+   3.742132618347093*^9, 3.742132624363105*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`H$$ = 0.172, $CellContext`t$$ = 
+    0, $CellContext`\[Beta]$$ = 0.44, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 2 Pi}, {{
+       Hold[$CellContext`\[Beta]$$], 0.44}, 0.1, 1}, {{
+       Hold[$CellContext`H$$], 0.172}, 0, 1}}, Typeset`size$$ = {
+    507., {116., 122.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`t$399027$$ = 
+    0, $CellContext`\[Beta]$399028$$ = 0, $CellContext`H$399029$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`H$$ = 0.172, $CellContext`t$$ = 
+        0, $CellContext`\[Beta]$$ = 0.44}, "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$399027$$, 0], 
+        Hold[$CellContext`\[Beta]$$, $CellContext`\[Beta]$399028$$, 0], 
+        Hold[$CellContext`H$$, $CellContext`H$399029$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[{
+         $CellContext`LorentzComb[$CellContext`\[Nu], $CellContext`\[Beta]$$ 
+           Sin[$CellContext`t$$] + 2, 
+          10, $CellContext`H$$], $CellContext`BroadInput[$CellContext`\[Nu], 
+           5] $CellContext`LorentzComb[$CellContext`\[Nu], $CellContext`\
+\[Beta]$$ Sin[$CellContext`t$$] + 2, 10, $CellContext`H$$], 
+         $CellContext`BroadInput[$CellContext`\[Nu], 5]}, {$CellContext`\[Nu],
+          0, 10}, PlotRange -> {0, 1}, Background -> Black, 
+        PlotLegends -> {
+         "Cavity Harmonics", "Ouput spectrum", "Input spectrum"}], 
+      "Specifications" :> {{$CellContext`t$$, 0, 2 
+         Pi}, {{$CellContext`\[Beta]$$, 0.44}, 0.1, 
+         1}, {{$CellContext`H$$, 0.172}, 0, 1}}, 
+      "Options" :> {PerformanceGoal -> "Quality"}, "DefaultOptions" :> {}],
+     ImageSizeCache->{558., {191., 197.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.7421282849127913`*^9, {3.742129353607317*^9, 3.742129371950349*^9}, 
+   3.7421294225150843`*^9, 3.7421294787506514`*^9, {3.7421324090314593`*^9, 
+   3.7421324374025955`*^9}, 3.742132636153412*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Case 2: Input Linewidth < FSR", "Subchapter",
+ CellChangeTimes->{{3.742100595383532*^9, 3.742100613346503*^9}, {
+  3.742100933142071*^9, 3.7421009376320596`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+In this case, most of the input line lies outside of the cavity resonances; \
+at any given time, at most one harmonic is contained in the line. In this \
+way, the FP cavity can act as a filter: broad band in, narrow band out. To \
+scan over the full linewidth, the length (and thereby, the FSR) will have to \
+be modulated sufficiently far. The offset to the FSR, named H (for horizontal \
+offset) can be adjusted to reduce extent to which we need to crank up the \
+length modulation.\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.7421009432490034`*^9, 3.742101207558691*^9}, {
+  3.742128140260773*^9, 3.742128142341174*^9}, {3.7421296133795223`*^9, 
+  3.742129622044384*^9}, {3.7421324512116632`*^9, 3.7421324522419434`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"NarrowInput", "[", 
+    RowBox[{"\[Nu]_", ",", "\[Nu]0_"}], "]"}], ":=", " ", 
+   RowBox[{"InputNu", "[", 
+    RowBox[{"\[Nu]", ",", "\[Nu]0", ",", "100"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.742132453489607*^9, 3.7421324906661263`*^9}, {
+  3.742132644762151*^9, 3.7421326627388535`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"LorentzComb", "[", 
+        RowBox[{"\[Nu]", ",", 
+         RowBox[{
+          RowBox[{"\[Beta]", "*", 
+           RowBox[{"Sin", "[", "t", "]"}]}], "+", "2"}], ",", "10", ",", 
+         "H"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"NarrowInput", "[", 
+         RowBox[{"\[Nu]", ",", "5"}], "]"}], "*", 
+        RowBox[{"LorentzComb", "[", 
+         RowBox[{"\[Nu]", ",", 
+          RowBox[{
+           RowBox[{"\[Beta]", "*", 
+            RowBox[{"Sin", "[", "t", "]"}]}], "+", "2"}], ",", "10", ",", 
+          "H"}], "]"}]}], ",", 
+       RowBox[{"NarrowInput", "[", 
+        RowBox[{"\[Nu]", ",", "5"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\[Nu]", ",", "0", ",", "10"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}], ",", 
+     RowBox[{"Background", "\[Rule]", "Black"}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Cavity Harmonics\>\"", ",", "\"\<Ouput spectrum\>\"", ",", 
+        "\"\<Input spectrum\>\""}], "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "\[Pi]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Beta]", ",", ".4"}], "}"}], ",", ".1", ",", "1"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"H", ",", ".11"}], "}"}], ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.742128318112112*^9, 3.742128328314698*^9}, {
+   3.7421283585149117`*^9, 3.742128378671957*^9}, {3.7421286664995875`*^9, 
+   3.7421287411409965`*^9}, {3.742128900905756*^9, 3.742128947150917*^9}, {
+   3.742129072809987*^9, 3.7421290818038473`*^9}, {3.7421291392620416`*^9, 
+   3.742129143965525*^9}, {3.7421294971505833`*^9, 3.742129497519548*^9}, 
+   3.742132468223301*^9, {3.7421324994616265`*^9, 3.742132511916312*^9}, {
+   3.7421326703625064`*^9, 3.7421326749312363`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`H$$ = 0.11, $CellContext`t$$ = 
+    0, $CellContext`\[Beta]$$ = 0.4, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 2 Pi}, {{
+       Hold[$CellContext`\[Beta]$$], 0.4}, 0.1, 1}, {{
+       Hold[$CellContext`H$$], 0.11}, 0, 1}}, Typeset`size$$ = {
+    507., {116., 122.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`t$403180$$ = 
+    0, $CellContext`\[Beta]$403181$$ = 0, $CellContext`H$403182$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`H$$ = 0.11, $CellContext`t$$ = 
+        0, $CellContext`\[Beta]$$ = 0.4}, "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$403180$$, 0], 
+        Hold[$CellContext`\[Beta]$$, $CellContext`\[Beta]$403181$$, 0], 
+        Hold[$CellContext`H$$, $CellContext`H$403182$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[{
+         $CellContext`LorentzComb[$CellContext`\[Nu], $CellContext`\[Beta]$$ 
+           Sin[$CellContext`t$$] + 2, 
+          10, $CellContext`H$$], $CellContext`NarrowInput[$CellContext`\[Nu], 
+           5] $CellContext`LorentzComb[$CellContext`\[Nu], $CellContext`\
+\[Beta]$$ Sin[$CellContext`t$$] + 2, 10, $CellContext`H$$], 
+         $CellContext`NarrowInput[$CellContext`\[Nu], 
+          5]}, {$CellContext`\[Nu], 0, 10}, PlotRange -> {0, 1}, Background -> 
+        Black, PlotLegends -> {
+         "Cavity Harmonics", "Ouput spectrum", "Input spectrum"}], 
+      "Specifications" :> {{$CellContext`t$$, 0, 2 
+         Pi}, {{$CellContext`\[Beta]$$, 0.4}, 0.1, 
+         1}, {{$CellContext`H$$, 0.11}, 0, 1}}, 
+      "Options" :> {PerformanceGoal -> "Quality"}, "DefaultOptions" :> {}],
+     ImageSizeCache->{558., {191., 197.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.7421289478191247`*^9, 3.7421289864498425`*^9, 
+  3.742129082571665*^9, 3.742129144427225*^9, 3.742129498606536*^9, 
+  3.742132514974095*^9, 3.74213267772287*^9, 3.7421330603654647`*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Application 1: Removing carrier of phase modulated signal  ", \
+"Subchapter",
+ CellChangeTimes->{{3.742100595383532*^9, 3.742100613346503*^9}, {
+  3.742100933142071*^9, 3.7421009376320596`*^9}, {3.7421296780086417`*^9, 
+  3.742129815876033*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+In some lab applications, a laser beam is modulated such that there are \
+additional frequencies that arise, outside of the natural linewidth. A \
+typical case is to add frequency  \[OpenCurlyDoubleQuote]sidebands\
+\[CloseCurlyDoubleQuote] that are symmetrically placed in frequency space, \
+say plus or minus \[Nu]s from the carrier, \[Nu]0, In some cases, such as \
+using the sideband frequency difference to drive Raman transitions, the \
+carrier frequency needs to be filtered out. One way of doing this is to use a \
+FP with an FSR equal the sideband frequency difference, so that the carrier \
+is not a supported harmonic. With FSR = 2\[Nu]s, both sidebands are \
+simultaneously supported harmonics. The cavity is not swept in the case of \
+analyzing a laser linewidth, although a piezo-electric transducer mounted to \
+the back of one of the mirrors may be utilized to fine tune the cavity length \
+and to stabilize it against small thermal contractions and expansions. \
+\>", "Subsubsection",
+ CellChangeTimes->{{3.7421009432490034`*^9, 3.742101207558691*^9}, {
+  3.742128140260773*^9, 3.742128142341174*^9}, {3.7421296133795223`*^9, 
+  3.742129622044384*^9}, {3.7421298219887156`*^9, 3.7421299268082905`*^9}, {
+  3.74213000975142*^9, 3.742130022768593*^9}, {3.742130155273161*^9, 
+  3.7421303330057287`*^9}, {3.7421680427171745`*^9, 3.7421682618669834`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"RamanInput", "[", 
+    RowBox[{"\[Nu]_", ",", "\[Nu]0_", ",", "\[Nu]s_"}], "]"}], " ", ":=", " ", 
+   RowBox[{
+    RowBox[{"NarrowInput", "[", 
+     RowBox[{"\[Nu]", ",", "\[Nu]0"}], "]"}], "+", 
+    RowBox[{".3", "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"NarrowInput", "[", 
+        RowBox[{"\[Nu]", ",", 
+         RowBox[{"\[Nu]0", "+", "\[Nu]s"}]}], "]"}], "+", 
+       RowBox[{"NarrowInput", "[", 
+        RowBox[{"\[Nu]", ",", 
+         RowBox[{"\[Nu]0", "-", "\[Nu]s"}]}], "]"}]}], ")"}]}]}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.7421303549779553`*^9, 3.7421304140861454`*^9}, {
+  3.7421325291622143`*^9, 3.742132567508584*^9}, {3.742132681888625*^9, 
+  3.7421327671957273`*^9}, {3.742132842233699*^9, 3.7421328906471663`*^9}, {
+  3.7421329746255245`*^9, 3.7421330115250864`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"LorentzComb", "[", 
+        RowBox[{"\[Nu]", ",", 
+         RowBox[{"\[Beta]", "+", "4"}], ",", "10", ",", "H"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"RamanInput", "[", 
+         RowBox[{"\[Nu]", ",", "5", ",", "2"}], "]"}], "*", 
+        RowBox[{"LorentzComb", "[", 
+         RowBox[{"\[Nu]", ",", 
+          RowBox[{"\[Beta]", "+", "4"}], ",", "10", ",", "H"}], "]"}]}], ",", 
+       RowBox[{"RamanInput", "[", 
+        RowBox[{"\[Nu]", ",", "5", ",", "2"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\[Nu]", ",", "0", ",", "10"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}], ",", 
+     RowBox[{"Background", "\[Rule]", "Black"}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Cavity Harmonics\>\"", ",", "\"\<Ouput spectrum\>\"", ",", 
+        "\"\<Input spectrum\>\""}], "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Beta]", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"H", ",", ".75"}], "}"}], ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7421327721533923`*^9, 3.7421328249306197`*^9}, {
+   3.7421330889315786`*^9, 3.7421331394573393`*^9}, {3.742133203823161*^9, 
+   3.742133210657877*^9}, {3.7421333518681426`*^9, 3.7421333578850765`*^9}, {
+   3.742168379160447*^9, 3.7421684208499403`*^9}, 3.7421684740954647`*^9, {
+   3.742168532050466*^9, 3.7421685585068693`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`H$$ = 0.75, $CellContext`\[Beta]$$ = 0, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Beta]$$], 0}, -1, 1}, {{
+       Hold[$CellContext`H$$], 0.75}, 0, 1}}, Typeset`size$$ = {
+    507., {116., 122.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Beta]$507729$$ = 
+    0, $CellContext`H$507730$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`H$$ = 0.75, $CellContext`\[Beta]$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Beta]$$, $CellContext`\[Beta]$507729$$, 0], 
+        Hold[$CellContext`H$$, $CellContext`H$507730$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[{
+         $CellContext`LorentzComb[$CellContext`\[Nu], $CellContext`\[Beta]$$ + 
+          4, 10, $CellContext`H$$], \
+$CellContext`RamanInput[$CellContext`\[Nu], 5, 
+           2] $CellContext`LorentzComb[$CellContext`\[Nu], $CellContext`\
+\[Beta]$$ + 4, 10, $CellContext`H$$], 
+         $CellContext`RamanInput[$CellContext`\[Nu], 5, 
+          2]}, {$CellContext`\[Nu], 0, 10}, PlotRange -> {0, 1}, Background -> 
+        Black, PlotLegends -> {
+         "Cavity Harmonics", "Ouput spectrum", "Input spectrum"}], 
+      "Specifications" :> {{{$CellContext`\[Beta]$$, 0}, -1, 
+         1}, {{$CellContext`H$$, 0.75}, 0, 1}}, 
+      "Options" :> {PerformanceGoal -> "Quality"}, "DefaultOptions" :> {}],
+     ImageSizeCache->{558., {177., 183.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.7421328263697877`*^9, 3.7421328952120104`*^9}, 
+   3.7421329503794594`*^9, 3.742133016275234*^9, {3.7421330646209464`*^9, 
+   3.742133106329968*^9}, {3.7421331398503103`*^9, 3.742133148476807*^9}, {
+   3.742133211899619*^9, 3.742133226026802*^9}, 3.742133359476785*^9, 
+   3.7421683601483192`*^9, {3.7421685418143826`*^9, 3.7421685702542667`*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{989, 677},
+WindowMargins->{{238, Automatic}, {Automatic, 57}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (July 28, 2016)",
+StyleDefinitions->"ReverseColor.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 215, 3, 70, "Section"],
+Cell[CellGroupData[{
+Cell[820, 29, 397, 6, 109, "Subsection"],
+Cell[CellGroupData[{
+Cell[1242, 39, 258, 4, 67, "Subsubsection"],
+Cell[1503, 45, 1194, 32, 161, "Input"],
+Cell[2700, 79, 1778, 45, 85, "Input"],
+Cell[CellGroupData[{
+Cell[4503, 128, 1311, 34, 50, "Input"],
+Cell[5817, 164, 2489, 47, 361, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8355, 217, 1122, 16, 235, "Subsubsection"],
+Cell[9480, 235, 1051, 25, 58, "Input"],
+Cell[10534, 262, 560, 14, 58, "Input"]
+}, Open  ]],
+Cell[11109, 279, 805, 12, 179, "Subsubsection"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11963, 297, 117, 1, 67, "Subchapter"],
+Cell[CellGroupData[{
+Cell[12105, 302, 818, 14, 207, "Subsubsection"],
+Cell[12926, 318, 391, 9, 30, "Input"],
+Cell[CellGroupData[{
+Cell[13342, 331, 3100, 67, 88, "Input"],
+Cell[16445, 400, 2842, 53, 405, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19348, 460, 168, 2, 67, "Subchapter"],
+Cell[CellGroupData[{
+Cell[19541, 466, 735, 11, 151, "Subsubsection"],
+Cell[20279, 479, 348, 8, 30, "Input"],
+Cell[CellGroupData[{
+Cell[20652, 491, 2150, 54, 88, "Input"],
+Cell[22805, 547, 2823, 52, 405, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25689, 606, 251, 4, 67, "Subchapter"],
+Cell[CellGroupData[{
+Cell[25965, 614, 1377, 19, 235, "Subsubsection"],
+Cell[27345, 635, 854, 21, 30, "Input"],
+Cell[CellGroupData[{
+Cell[28224, 660, 1780, 43, 69, "Input"],
+Cell[30007, 705, 2704, 50, 377, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
