@@ -1,0 +1,359 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     12503,        351]
+NotebookOptionsPosition[     11818,        324]
+NotebookOutlinePosition[     12161,        339]
+CellTagsIndexPosition[     12118,        336]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["rydberg-rydberg interactions", "Title",
+ CellChangeTimes->{{3.811971011166643*^9, 3.8119710227062626`*^9}}],
+
+Cell["P. Huft", "Text",
+ CellChangeTimes->{{3.8119710266233625`*^9, 3.811971028517356*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Vdd between two atoms, single Rydberg state", "Section",
+ CellChangeTimes->{{3.811971059534021*^9, 3.811971074218193*^9}, {
+  3.8119761202895975`*^9, 3.81197612582969*^9}}],
+
+Cell["\<\
+Single atom dipole matrix elements to be computed with PairInteraction module \
+in python. \
+\>", "Text",
+ CellChangeTimes->{{3.81197110386451*^9, 3.8119711740232415`*^9}, {
+  3.8119757764858866`*^9, 3.8119757867270527`*^9}, {3.811976066784577*^9, 
+  3.811976068590216*^9}, {3.811978425140011*^9, 3.8119784301619263`*^9}}],
+
+Cell["\<\
+Single atom structure: include two ground states, intermediate excited state, \
+Rydberg state. Assume that large Zeeman shifts isolate an effective 4 level \
+lambda system.\
+\>", "Text",
+ CellChangeTimes->{{3.8119760735956793`*^9, 3.8119761470999784`*^9}, {
+  3.8119763400632763`*^9, 3.81197636915459*^9}}],
+
+Cell[TextData[{
+ "Matrix elems. reshape H into atoms*states x atoms*states. \n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["H", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"4", " ", "atomi"}], " ", "-", " ", "statei", "+", "1"}], ",", 
+      RowBox[{
+       RowBox[{"4", "atomj"}], "-", "statej", "+", "1"}]}]], "=", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["\[CapitalDelta]", "g1"], 
+      SubscriptBox["\[Delta]", "ij"], 
+      SubscriptBox["\[Delta]", 
+       RowBox[{"statei", ",", "1"}]], 
+      SubscriptBox["\[Delta]", 
+       RowBox[{"statej", ",", "1"}]]}], "+", 
+     RowBox[{
+      SubscriptBox["\[CapitalDelta]", "g2"], 
+      SubscriptBox["\[Delta]", "ij"], 
+      SubscriptBox["\[Delta]", 
+       RowBox[{"statei", ",", "2"}]], 
+      SubscriptBox["\[Delta]", 
+       RowBox[{"statej", ",", "2"}]]}], "+", 
+     RowBox[{
+      SubscriptBox["\[CapitalDelta]", "e"], 
+      SubscriptBox["\[Delta]", "ij"], 
+      SubscriptBox["\[Delta]", 
+       RowBox[{"statei", ",", "3"}]], 
+      SubscriptBox["\[Delta]", 
+       RowBox[{"statej", ",", "3"}]]}], "+", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["\[HBar]\[CapitalOmega]", 
+        RowBox[{"1", "A"}]], "(", 
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[Delta]", "ij"], 
+         SubscriptBox["\[Delta]", 
+          RowBox[{"statei", ",", "2"}]], 
+         SubscriptBox["\[Delta]", 
+          RowBox[{"statej", ",", "3"}]]}], "+", 
+        RowBox[{
+         SubscriptBox["\[Delta]", "ij"], 
+         SubscriptBox["\[Delta]", 
+          RowBox[{"statei", ",", "3"}]], 
+         SubscriptBox["\[Delta]", 
+          RowBox[{"statej", ",", "2"}]]}]}], ")"}], "/", "2"}], "+", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["\[HBar]\[CapitalOmega]", 
+        RowBox[{"1", "B"}]], "(", 
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[Delta]", "ij"], 
+         SubscriptBox["\[Delta]", 
+          RowBox[{"statei", ",", "1"}]], 
+         SubscriptBox["\[Delta]", 
+          RowBox[{"statej", ",", "3"}]]}], "+", 
+        RowBox[{
+         SubscriptBox["\[Delta]", "ij"], 
+         SubscriptBox["\[Delta]", 
+          RowBox[{"statei", ",", "3"}]], 
+         SubscriptBox["\[Delta]", 
+          RowBox[{"statej", ",", "1"}]]}]}], ")"}], "/", "2"}], "+", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["\[HBar]\[CapitalOmega]", "2"], "(", 
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[Delta]", "ij"], 
+         SubscriptBox["\[Delta]", 
+          RowBox[{"statei", ",", "3"}]], 
+         SubscriptBox["\[Delta]", 
+          RowBox[{"statej", ",", "4"}]]}], "+", 
+        RowBox[{
+         SubscriptBox["\[Delta]", "ij"], 
+         SubscriptBox["\[Delta]", 
+          RowBox[{"statei", ",", "4"}]], 
+         SubscriptBox["\[Delta]", 
+          RowBox[{"statej", ",", "3"}]]}]}], ")"}], "/", "2"}], "+", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", 
+        SubscriptBox["\[Delta]", "ij"]}], ")"}], 
+      SubscriptBox["\[Delta]", 
+       RowBox[{"statei", ",", "4"}]], 
+      SubscriptBox["\[Delta]", 
+       RowBox[{"statej", ",", "4"}]], "Vdd"}]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "\nComputationally more friendly to define a matrix Hij that describes the \
+energy levels and coupling scheme of atom i, plus the interactions to atom j. \
+Then just build Hfull by iterating over Hfull and plopping in Hij at each \
+section atom x atom section."
+}], "Text",
+ CellChangeTimes->{{3.8119767666849937`*^9, 3.811976772461507*^9}, {
+  3.8119770210380845`*^9, 3.811977361889329*^9}, {3.8119774099496436`*^9, 
+  3.8119776907220573`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Hij", " ", "=", 
+   RowBox[{"(", GridBox[{
+      {"0", "0", "\[CapitalOmega]1B", "0", "0"},
+      {"0", "\[CapitalDelta]g1", "\[CapitalOmega]1A", "0", "0"},
+      {
+       RowBox[{"\[CapitalOmega]1B", "\[Conjugate]"}], 
+       RowBox[{"\[CapitalOmega]1A", "\[Conjugate]"}], "\[CapitalDelta]e1", 
+       "\[CapitalOmega]2", "0"},
+      {"0", "0", 
+       RowBox[{"\[CapitalOmega]2", "\[Conjugate]"}], "\[CapitalDelta]r", "0"},
+      {"0", "0", "0", "0", 
+       RowBox[{"Vdd", "[", 
+        RowBox[{"ri", ",", "rj"}], "]"}]}
+     }], ")"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.811977694380393*^9, 3.811977794086028*^9}, {
+  3.81197784455519*^9, 3.811977904817491*^9}, {3.8119779430649643`*^9, 
+  3.811977953583963*^9}, {3.811978059781856*^9, 3.8119780938794847`*^9}, {
+  3.8119783149808874`*^9, 3.811978322010812*^9}}],
+
+Cell[TextData[{
+ "The basis of the hamiltonian above is ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SubscriptBox["c", 
+     RowBox[{"ig1", ","}]]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["c", 
+    RowBox[{"ig2", ","}]], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["c", 
+    RowBox[{"ie", ","}]], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["c", 
+    RowBox[{"ir", ","}]], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["c", 
+    RowBox[{"ir", ",", "jr"}]], TraditionalForm]]],
+ "}. the last element is the amplitude of a rydberg-rydberg pair state \
+between atoms i and j, while the first four are single atom state amplitudes.\
+\n\nThen the full matrix looks like: \nHfull = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", GridBox[{
+      {"H11", "H12", ".", ".", "."},
+      {"H21", "H22", "\[Placeholder]", "\[Placeholder]", "\[Placeholder]"},
+      {".", "\[Placeholder]", ".", "\[Placeholder]", "\[Placeholder]"},
+      {".", "\[Placeholder]", "\[Placeholder]", ".", "\[Placeholder]"},
+      {".", "\[Placeholder]", "\[Placeholder]", "\[Placeholder]", "."}
+     }], ")"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "\nAnd each submatrix Hij need only be calculated by evaluating Vdd[ri,rj] \
+for that atom pair."
+}], "Text",
+ CellChangeTimes->{{3.8119781215238223`*^9, 3.8119784004824924`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "constants", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"\[HBar]", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ee", "=", " ", "1.602*^-19"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"c", " ", "=", " ", 
+     RowBox[{"3", "*", 
+      SuperscriptBox["10", "8"]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Mu]0", " ", "=", 
+     RowBox[{"4", "\[Pi]", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "7"}]]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Epsilon]0", " ", "=", " ", 
+     RowBox[{"1", "/", 
+      SqrtBox[
+       RowBox[{"c", " ", "\[Mu]0"}]]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"qq", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"ee", "^", "2"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"4", " ", "\[Pi]", " ", "\[Epsilon]0"}], ")"}]}]}], 
+    ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.811975789738289*^9, 3.8119757914525995`*^9}, {
+  3.8119758384794707`*^9, 3.811976007140537*^9}, {3.811976189672579*^9, 
+  3.8119762347925587`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"system", " ", "params"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"numStates", " ", "=", "4"}], ";"}], " ", 
+   RowBox[{"(*", 
+    RowBox[{"single", " ", "atom", " ", "states"}], "*)"}], " ", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"numAtoms", " ", "=", " ", "2"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"dim", " ", "=", " ", 
+     RowBox[{"numStates", "*", "numAtoms"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"\[CapitalOmega]1A", ";"}], " ", "\[IndentingNewLine]", 
+   RowBox[{"\[CapitalOmega]1B", ";"}], "\[IndentingNewLine]", 
+   RowBox[{"\[CapitalOmega]2", ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Vdd", ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "build", " ", "the", " ", "hamiltonian", " ", "in", " ", "a", " ", 
+     "generalizable", " ", "way", " ", "for", " ", "more", " ", "atoms"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Hfull", " ", "=", " ", 
+    RowBox[{"ConstantArray", "[", 
+     RowBox[{"0", ",", 
+      RowBox[{"{", 
+       RowBox[{"dim", ",", "dim"}], "}"}]}], "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{"For", "[", 
+    RowBox[{
+     RowBox[{"atomi", "=", "1"}], ",", 
+     RowBox[{"atomi", "<", 
+      RowBox[{"numAtoms", "+", "1"}]}], ",", 
+     RowBox[{"atomi", "++"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"atomj", "=", "1"}], ",", 
+       RowBox[{"atomj", "<", 
+        RowBox[{"numAtoms", "+", "1"}]}], ",", 
+       RowBox[{"atomj", "++"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"statei", "=", "1"}], ",", 
+         RowBox[{"statei", "<", 
+          RowBox[{"numStates", "+", "1"}]}], ",", 
+         RowBox[{"statei", "++"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"For", "[", 
+          RowBox[{
+           RowBox[{"statej", "=", "1"}], ",", 
+           RowBox[{"statej", "<", 
+            RowBox[{"numStates", "+", "1"}]}], ",", 
+           RowBox[{"statej", "++"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"Hfull", "[", 
+             RowBox[{"[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"numStates", " ", "atomi"}], " ", "-", " ", "statei", 
+                "+", "1"}], ",", 
+               RowBox[{
+                RowBox[{"numStates", " ", "atomj"}], " ", "-", " ", "statej", 
+                "+", "1"}]}], "]"}], "]"}], "="}]}], "\[IndentingNewLine]", 
+          "]"}]}], "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+      "]"}]}], "\[IndentingNewLine]", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.811975941372938*^9, 3.81197594291763*^9}, {
+  3.8119760233216057`*^9, 3.811976023750677*^9}, {3.8119761849252896`*^9, 
+  3.811976238820321*^9}, {3.8119762970152073`*^9, 3.811976327493642*^9}, {
+  3.8119763728698115`*^9, 3.811976419658043*^9}, {3.8119764909618597`*^9, 
+  3.8119767297301025`*^9}, {3.81197677517649*^9, 3.811976800869766*^9}, {
+  3.811976870581002*^9, 3.811976996868896*^9}}],
+
+Cell["", "Text",
+ CellChangeTimes->{{3.8119775825855646`*^9, 3.8119775841089497`*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 697},
+WindowMargins->{{359, Automatic}, {12, Automatic}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 113, 1, 101, "Title"],
+Cell[696, 25, 91, 1, 30, "Text"],
+Cell[CellGroupData[{
+Cell[812, 30, 178, 2, 70, "Section"],
+Cell[993, 34, 332, 6, 30, "Text"],
+Cell[1328, 42, 316, 6, 49, "Text"],
+Cell[1647, 50, 3597, 99, 156, "Text"],
+Cell[5247, 151, 857, 19, 99, "Input"],
+Cell[6107, 172, 1422, 40, 203, "Text"],
+Cell[7532, 214, 1114, 31, 156, "Input"],
+Cell[8649, 247, 3052, 70, 373, "Input"],
+Cell[11704, 319, 86, 1, 30, "Text"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
