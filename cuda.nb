@@ -1,0 +1,180 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6057,        170]
+NotebookOptionsPosition[      5312,        139]
+NotebookOutlinePosition[      5655,        154]
+CellTagsIndexPosition[      5612,        151]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<CUDALink`\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.8141851400511847`*^9, 3.8141851442559204`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CUDAQ", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.8141851490303435`*^9, 3.8141851527629766`*^9}}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{3.8141853320523562`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"randM", " ", "=", " ", 
+   RowBox[{"RandomReal", "[", 
+    RowBox[{"1", ",", 
+     RowBox[{"{", 
+      RowBox[{"4000", ",", "4000"}], "}"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.8141853773394146`*^9, 3.814185467291857*^9}, {
+  3.8141856065929775`*^9, 3.8141856175352063`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"AbsoluteTiming", "[", 
+  RowBox[{
+   RowBox[{"randM", ".", "randM"}], ";"}], "]"}]], "Input",
+ CellChangeTimes->{{3.8141853773394146`*^9, 3.8141854399357567`*^9}, 
+   3.814185561278862*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"2.6577896`", ",", "Null"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.814185434972148*^9, {3.814185473281892*^9, 3.81418548302485*^9}, {
+   3.8141855588117557`*^9, 3.814185562405106*^9}, {3.8141856102513456`*^9, 
+   3.8141856389467645`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"AbsoluteTiming", "[", 
+  RowBox[{
+   RowBox[{"CUDADot", "[", 
+    RowBox[{"randM", ",", "randM"}], "]"}], ";"}], "]"}]], "Input",
+ CellChangeTimes->{{3.814185578635726*^9, 3.814185578708487*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "CUDADot","lnchfld","\"CUDALink experienced a kernel launch failure.\"",2,
+   22,4,30730443230128009606,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.8141856261360464`*^9, 3.8141856467054386`*^9}, 
+   3.8141857892087965`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.1199706`", ",", "Null"}], "}"}]], "Output",
+ CellChangeTimes->{{3.8141855847483473`*^9, 3.8141856467518325`*^9}, 
+   3.814185789251752*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CUDAInformation", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.8141856761283083`*^9, 3.814185684258078*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", "\[Rule]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\<\"Name\"\>", "\[Rule]", "\<\"GeForce 940MX\"\>"}], ",", 
+     RowBox[{"\<\"Clock Rate\"\>", "\[Rule]", "1241500"}], ",", 
+     RowBox[{"\<\"Compute Capabilities\"\>", "\[Rule]", "5.`"}], ",", 
+     RowBox[{"\<\"GPU Overlap\"\>", "\[Rule]", "1"}], ",", 
+     RowBox[{"\<\"Maximum Block Dimensions\"\>", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1024", ",", "1024", ",", "64"}], "}"}]}], ",", 
+     RowBox[{"\<\"Maximum Grid Dimensions\"\>", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"2147483647", ",", "65535", ",", "65535"}], "}"}]}], ",", 
+     RowBox[{"\<\"Maximum Threads Per Block\"\>", "\[Rule]", "1024"}], ",", 
+     RowBox[{"\<\"Maximum Shared Memory Per Block\"\>", "\[Rule]", "49152"}], 
+     ",", 
+     RowBox[{"\<\"Total Constant Memory\"\>", "\[Rule]", "65536"}], ",", 
+     RowBox[{"\<\"Warp Size\"\>", "\[Rule]", "32"}], ",", 
+     RowBox[{"\<\"Maximum Pitch\"\>", "\[Rule]", "2147483647"}], ",", 
+     RowBox[{"\<\"Maximum Registers Per Block\"\>", "\[Rule]", "65536"}], ",", 
+     RowBox[{"\<\"Texture Alignment\"\>", "\[Rule]", "512"}], ",", 
+     RowBox[{"\<\"Multiprocessor Count\"\>", "\[Rule]", "3"}], ",", 
+     RowBox[{"\<\"Core Count\"\>", "\[Rule]", "96"}], ",", 
+     RowBox[{"\<\"Execution Timeout\"\>", "\[Rule]", "1"}], ",", 
+     RowBox[{"\<\"Integrated\"\>", "\[Rule]", "False"}], ",", 
+     RowBox[{"\<\"Can Map Host Memory\"\>", "\[Rule]", "True"}], ",", 
+     RowBox[{"\<\"Compute Mode\"\>", "\[Rule]", "\<\"Default\"\>"}], ",", 
+     RowBox[{"\<\"Texture1D Width\"\>", "\[Rule]", "65536"}], ",", 
+     RowBox[{"\<\"Texture2D Width\"\>", "\[Rule]", "65536"}], ",", 
+     RowBox[{"\<\"Texture2D Height\"\>", "\[Rule]", "65536"}], ",", 
+     RowBox[{"\<\"Texture3D Width\"\>", "\[Rule]", "4096"}], ",", 
+     RowBox[{"\<\"Texture3D Height\"\>", "\[Rule]", "4096"}], ",", 
+     RowBox[{"\<\"Texture3D Depth\"\>", "\[Rule]", "4096"}], ",", 
+     RowBox[{"\<\"Texture2D Array Width\"\>", "\[Rule]", "16384"}], ",", 
+     RowBox[{"\<\"Texture2D Array Height\"\>", "\[Rule]", "16384"}], ",", 
+     RowBox[{"\<\"Texture2D Array Slices\"\>", "\[Rule]", "2048"}], ",", 
+     RowBox[{"\<\"Surface Alignment\"\>", "\[Rule]", "512"}], ",", 
+     RowBox[{"\<\"Concurrent Kernels\"\>", "\[Rule]", "True"}], ",", 
+     RowBox[{"\<\"ECC Enabled\"\>", "\[Rule]", "False"}], ",", 
+     RowBox[{"\<\"TCC Enabled\"\>", "\[Rule]", "False"}], ",", 
+     RowBox[{"\<\"Total Memory\"\>", "\[Rule]", "2147483648"}]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.814185684711609*^9}]
+}, Open  ]]
+},
+WindowSize->{759, 697},
+WindowMargins->{{Automatic, 110}, {Automatic, 50}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 144, 2, 30, "Input"],
+Cell[CellGroupData[{
+Cell[727, 26, 123, 2, 30, "Input"],
+Cell[853, 30, 75, 1, 30, "Output"]
+}, Open  ]],
+Cell[943, 34, 324, 8, 30, "Input"],
+Cell[CellGroupData[{
+Cell[1292, 46, 213, 5, 30, "Input"],
+Cell[1508, 53, 281, 6, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1826, 64, 219, 5, 30, "Input"],
+Cell[2048, 71, 283, 6, 21, "Message"],
+Cell[2334, 79, 181, 4, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2552, 88, 131, 2, 30, "Input"],
+Cell[2686, 92, 2610, 44, 240, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
