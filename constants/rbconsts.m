@@ -1,4 +1,5 @@
 INuc = 3/2;(* nuclear spin *)
+Se = 1/2;(* electron spin *)
 mRb = 1.4192261*10^-25; (*[kg]*)
 gS = 2.00023; (*Lande g, spin*)
 gL = 1; 
