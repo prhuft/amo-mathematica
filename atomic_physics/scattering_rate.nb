@@ -1,0 +1,334 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     12039,        326]
+NotebookOptionsPosition[     11144,        290]
+NotebookOutlinePosition[     11506,        306]
+CellTagsIndexPosition[     11463,        303]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Scattering rate", "Title",
+ CellChangeTimes->{{3.819296454756922*^9, 3.8192964678847027`*^9}, {
+  3.8268144061293335`*^9, 3.826814415202081*^9}, {3.827409757475295*^9, 
+  3.8274097645623245`*^9}}],
+
+Cell["\<\
+Want to excite an atom to a Rydberg state near deterministically, given an \
+ensemble of atoms loaded into a dipole trap.\
+\>", "Text",
+ CellChangeTimes->{{3.8268144171698523`*^9, 3.826814449276785*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"constsdir", "=", "\"\<..\\\\constants\\\\\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"AppendTo", "[", 
+   RowBox[{"$Path", ",", " ", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "constsdir"}], "}"}], 
+     "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"<<", "\"\<physconsts.m\>\""}], "\[IndentingNewLine]", 
+ RowBox[{"<<", "\"\<rbconsts.m\>\""}]}], "Input",
+ CellChangeTimes->{{3.8192971015346127`*^9, 3.819297138988415*^9}, {
+  3.8245596614112034`*^9, 3.8245597030775857`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["single atom in free space", "Section",
+ CellChangeTimes->{{3.826878930945917*^9, 3.826878933829567*^9}, {
+  3.8274097677491813`*^9, 3.827409774467664*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"scatter", "=", 
+   RowBox[{"\[Gamma]", 
+    FractionBox[
+     FractionBox["Int", 
+      RowBox[{"2", "IntS"}]], 
+     RowBox[{"1", "+", 
+      FractionBox[
+       RowBox[{"4", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"2", "\[Pi]", " ", "\[Delta]"}], ")"}], "2"]}], 
+       SuperscriptBox["\[Gamma]", "2"]], "+", 
+      FractionBox["Int", "IntS"]}]]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Gamma]", " ", "=", "\[CapitalGamma]D2"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"P", " ", "=", " ", "3.5*^-6"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Int", " ", "=", " ", 
+   RowBox[{"P", "/", 
+    RowBox[{"(", 
+     RowBox[{"\[Pi]", "*", "6*^-6", "*", "8*^-6"}], ")"}]}]}], 
+  ";"}], "\[IndentingNewLine]", "\"\<Saturation intensity \
+[mW/\!\(\*SuperscriptBox[\(cm\), \(2\)]\)]\>\"", "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IntS", " ", "=", 
+    RowBox[{"3.05", "*", 
+     SuperscriptBox["10", 
+      RowBox[{"-", "3"}]], "*", 
+     SuperscriptBox["10", "4"]}]}], ";"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"[", 
+     RowBox[{"W", "/", 
+      SuperscriptBox["m", "2"]}], "]"}], " ", 
+    FractionBox[
+     RowBox[{"\[HBar]", " ", "\[Gamma]", " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"2", "\[Pi]", " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"\[Nu]D2", "*", 
+            SuperscriptBox["10", "12"]}], "-", "2.563*^9", "+", "267*^6"}], 
+          ")"}]}], ")"}], "3"]}], 
+     RowBox[{"12", "\[Pi]", " ", 
+      SuperscriptBox["c", "2"]}]]}], "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"IntS", "*", 
+  SuperscriptBox["10", "3"], "*", 
+  SuperscriptBox["10", 
+   RowBox[{"-", "4"}]]}]}], "Input",
+ CellChangeTimes->{{3.827407812300577*^9, 3.827407822695544*^9}, {
+  3.8274082093622665`*^9, 3.8274084002633066`*^9}, {3.82740848608615*^9, 
+  3.827408533514245*^9}, {3.82740857460944*^9, 3.827408977241115*^9}, {
+  3.827409097250169*^9, 3.827409218099945*^9}, {3.8274093279436607`*^9, 
+  3.827409329422883*^9}, {3.8274094813116045`*^9, 3.827409492108575*^9}}],
+
+Cell[BoxData["\<\"Saturation intensity [mW/\\!\\(\\*SuperscriptBox[\\(cm\\), \
+\\(2\\)]\\)]\"\>"], "Output",
+ CellChangeTimes->{{3.827408823660951*^9, 3.82740885240808*^9}, {
+   3.8274088995092907`*^9, 3.8274089032747326`*^9}, 3.827408937940756*^9, 
+   3.8274089781464148`*^9, {3.8274090983932657`*^9, 3.8274091169055243`*^9}, {
+   3.8274091798071823`*^9, 3.8274092205729136`*^9}, 3.827409495360083*^9}],
+
+Cell[BoxData["3.05`"], "Output",
+ CellChangeTimes->{{3.827408823660951*^9, 3.82740885240808*^9}, {
+   3.8274088995092907`*^9, 3.8274089032747326`*^9}, 3.827408937940756*^9, 
+   3.8274089781464148`*^9, {3.8274090983932657`*^9, 3.8274091169055243`*^9}, {
+   3.8274091798071823`*^9, 3.8274092205729136`*^9}, 3.8274094953651*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"scatter", "*", "1*^-6"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Delta]", ",", "1*^9", ",", "2*^9"}], "}"}], ",", 
+   RowBox[{"LabelStyle", "\[Rule]", 
+    RowBox[{"Directive", "[", 
+     RowBox[{"Black", ",", "Medium"}], "]"}]}], ",", 
+   RowBox[{"Axes", "\[Rule]", "Off"}], ",", 
+   RowBox[{"Frame", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"True", ",", "True", ",", "False", ",", "False"}], "}"}]}], ",", 
+   RowBox[{"FrameLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Detuning \[CapitalDelta]/2\[Pi]\>\"", ",", 
+      "\"\<Scattering rate [\!\(\*SuperscriptBox[\(\[Mu]s\), \
+\(-1\)]\)]\>\""}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"RGBColor", "[", 
+     RowBox[{
+      RowBox[{"RandomReal", "[", "]"}], ",", 
+      RowBox[{"RandomReal", "[", "]"}], ",", 
+      RowBox[{"RandomReal", "[", "]"}]}], "]"}]}], ",", 
+   RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", ".14"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.826880131055838*^9, 3.826880290062516*^9}, {
+  3.8268803579316244`*^9, 3.8268803585981693`*^9}, {3.8268821592874575`*^9, 
+  3.8268821643290358`*^9}, {3.8274093143280773`*^9, 3.8274097076186237`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {}, 
+    {RGBColor[0.7413231247678211, 0.07162697755361358, 0.7673241942074123], 
+     AbsoluteThickness[1.6], Opacity[1.], LineBox[CompressedData["
+1:eJwVxXk41HkcAGBbq6fsxliV2OYp58NmW5UiI58+tJVzZyX1DG0bm2MVu7Me
+Uyp6HDnW1bEPIe13HCMhV6KRfsikpnE1mMMv2tQ2MbnPx2Z3/3if18g/3OvU
+Cg0NDY///H+1o43WKYkELTIyTcXTFLyVzmg3dkrQiHst03ySAsPQ+3p6PRIs
+deTkxI5REJdlz2zuk2DNfPhlh/cUeI/vs2YOSXCuM1B4f5CCWeLh0zspwdac
+DWHiZxTs0Qzif7uxA63jJooDCQWU+Ia9eUAH+qUJzfzZFLDHU4wvaXaiboua
+r2I/gkeL7RL9m52YkC2LdLBsAl6wzSblxi50/6U2Rb3hIbA3u5ZHhnRhchzz
+89R/hGDgsmpLVW0XBgdYtOtoCqHAMemD7apuDPE3y2KsegBrDYWbnHy6Meq8
+fsZWgwYICr5uNfJnN04K2foBB+shNnZn9tBEN7KOs7pcw+9Dms65NxF7e9B5
+hpuXdrcOzsaGX01N7MGc8+96fJfugWnz1tzx/h5M3HNRz9T5HlDc9IQp4xdY
+L29SncmvBeZ4ndgp4gWu/nnEd9t0DXAOZ/66/vELTJ1RnB71roFES8bCZW0p
+ntkbs2bFk2qIEB8Z2H9Citln3cnLndXw/RASUirFrZvMRpIrq2CMmmp2XZJi
+/e4J51MWVXAm0ceJ596LZt4mJ/NKKkFJnSh0yupF33Pm+3x3V4KWaJs/510v
+9kc9T7GKuQuWjoWf6Nr0YUtswAKvtAIs8p5puEX3obFytHr5VTm8a6vz7e7o
+w3BbefQXuuWQ7e+SPWvQj4Q3lFx/pAzWiIl1cGg/vuIHLidfvQMcgzsWx4X9
+aCZadzBKUQq5Cs6KCU0ZpozFL9rsKoWbQV223T4yzAhjtuQn3YaMoFFPNl+G
+w3Qfn6sugZMeDW1eozI876fzKeGUwPRHt2ziIEf6wDHePCUAnkmCe0aiHJ/I
+WwtKdwvggV6831OZHGebmhjLRcWgjrT05JsqsHxwfCzfpBg0qJhbH8MUeOG7
+SE/NkiKQSnPdBY8UqOs8y+CZF0G23w/KD1pKPK65Q3ajqhCYlW/bYv2UeLAs
+Ivhr20KIVW1m5JQpMTgv5ndGawH0/7HMYs8pMd4tk+3AKQD12qJWr0MD+FuW
+wazNKB+m5setpq8NYOhCzFxzEh/kT9UzG18OIJVrGm3zFR8uBVYapmyjkbmD
+U/dEREA/0sAo5xyNebxFofw0gRbBJXdVFI3q96x9nqEETsv/5tldoHFpSGuh
+JYQA5VDX0RdNo9kWq9XlgQRCVh6+oBdPI1fFy437kYAwM7U/NZ1GOPplur03
+gRN3ltNiCmicmt4e0MkioEUHNnQU0vg4fX+Qqz2BWu2OYWYxjQGvm/Lb7Ais
+5uaxGktoXEgRCRp3Eaiy26OaL6fRadjUqPwbAitF3P3cehoPiBxuZ5kQqJiT
+hzc30NjocmVwvTGBY5aYyxDSGFb08ND1LQTKUnUmKx7S2L49quYKk8CRw2W3
+RlpoXDRKVqXrE9BI0BPbP6bRkObf095AoLQuaja5jUYFy6M2fR2BjwYuHhbt
+NL4Ms3bJ0CVQ4lZ5lveURk7a0UEdBgGvi/qFomc0Kl+PCDK1CSxVRHeuf06j
+d94wX3ctAcHQm8WfJDQW/mXXdfUzAv8CoItxtA==
+      "]]}}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{1.0000000204081633`*^9, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, False}, {True, False}},
+  FrameLabel->{{
+     FormBox[
+     "\"Scattering rate [\\!\\(\\*SuperscriptBox[\\(\[Mu]s\\), \
+\\(-1\\)]\\)]\"", TraditionalForm], None}, {
+     FormBox["\"Detuning \[CapitalDelta]/2\[Pi]\"", TraditionalForm], None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  ImageSize->Large,
+  LabelStyle->Directive[
+    GrayLevel[0], Medium],
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "ScalingFunctions" -> None, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{1.0000000204081633`*^9, 1.9999999795918367`*^9}, {0, 0.14}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {0, 0}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.826880132267661*^9, {3.826880274609168*^9, 3.82688035926905*^9}, 
+   3.8268821658316965`*^9, 3.827409463958198*^9, {3.827409537258873*^9, 
+   3.8274096250438147`*^9}, {3.8274096953911057`*^9, 3.8274097093944073`*^9}}]
+}, Open  ]],
+
+Cell[TextData[{
+ "So on average, < 0.04 photons are scattered per 1 \[Mu]s time interval if \
+our light is 2 GHz detuned. For a \[Pi] pulse to a Rydberg W state with a \
+mean of N atoms is  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["t", 
+     RowBox[{"\[Pi]", " "}]], "=", 
+    RowBox[{
+     RowBox[{"\[Pi]", "/", 
+      SubscriptBox["\[CapitalOmega]", "N"]}], "=", 
+     RowBox[{"\[Pi]", "/", 
+      RowBox[{"(", 
+       RowBox[{
+        SqrtBox["N"], "\[CapitalOmega]"}], ")"}]}]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ". "
+}], "Text",
+ CellChangeTimes->{{3.8274099310541253`*^9, 3.8274101747360287`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{"\"\<photons scattered during W state pi pulse\>\"", "\
+\[IndentingNewLine]", 
+ RowBox[{
+  FractionBox["\[Pi]", 
+   RowBox[{
+    SqrtBox["10"], "5*^5"}]], "*", 
+  SuperscriptBox["10", "6"], "*", "0.04"}]}], "Input",
+ CellChangeTimes->{{3.82741019933113*^9, 3.8274102233540907`*^9}, {
+  3.827410272225525*^9, 3.8274103031482987`*^9}}],
+
+Cell[BoxData["\<\"photons scattered during W state pi pulse\"\>"], "Output",
+ CellChangeTimes->{3.8274102268914986`*^9, 3.8274103036469183`*^9}],
+
+Cell[BoxData["0.07947670612636881`"], "Output",
+ CellChangeTimes->{3.8274102268914986`*^9, 3.827410303653867*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{766, 812},
+WindowMargins->{{Automatic, -7}, {Automatic, 0}},
+Magnification->1.25,
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 202, 3, 127, "Title"],
+Cell[785, 27, 213, 4, 63, "Text"],
+Cell[1001, 33, 747, 19, 134, "Input"],
+Cell[CellGroupData[{
+Cell[1773, 56, 161, 2, 86, "Section"],
+Cell[CellGroupData[{
+Cell[1959, 62, 2129, 59, 271, "Input"],
+Cell[4091, 123, 403, 5, 37, "Output"],
+Cell[4497, 130, 325, 4, 37, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4859, 139, 1306, 31, 171, "Input"],
+Cell[6168, 172, 3643, 73, 473, "Output"]
+}, Open  ]],
+Cell[9826, 248, 643, 19, 104, "Text"],
+Cell[CellGroupData[{
+Cell[10494, 271, 347, 8, 91, "Input"],
+Cell[10844, 281, 144, 1, 37, "Output"],
+Cell[10991, 284, 113, 1, 37, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
