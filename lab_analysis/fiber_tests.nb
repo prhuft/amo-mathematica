@@ -1,0 +1,290 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9454,        282]
+NotebookOptionsPosition[      8584,        246]
+NotebookOutlinePosition[      8931,        261]
+CellTagsIndexPosition[      8888,        258]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["fiber tests", "Title",
+ CellChangeTimes->{{3.837280738672335*^9, 3.837280747020923*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"constsdir", "=", "\"\<..\\\\constants\\\\\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"imagedir", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+      "\"\<\\\\images\\\\\>\""}], "}"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"solndir", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<\\\\solns\\\\\>\""}],
+      "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Do", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"AppendTo", "[", 
+     RowBox[{"$Path", ",", " ", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"NotebookDirectory", "[", "]"}], ",", "dir"}], "}"}], 
+       "]"}]}], "]"}], ";"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"dir", ",", 
+     RowBox[{"{", 
+      RowBox[{"constsdir", ",", "imagedir", ",", "solndir"}], "}"}]}], 
+    "}"}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"<<", "\"\<physconsts.m\>\""}], "\[IndentingNewLine]", 
+ RowBox[{"<<", "\"\<rbconsts.m\>\""}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"conj", "[", "z_", "]"}], ":=", 
+   RowBox[{"z", "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\[ImaginaryI]", "\[Rule]", " ", 
+       RowBox[{"-", "\[ImaginaryI]"}]}], ",", 
+      RowBox[{
+       RowBox[{"-", "\[ImaginaryI]"}], "\[Rule]", "\[ImaginaryI]"}]}], 
+     "}"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetOptions", "[", 
+   RowBox[{"Plot", ",", 
+    RowBox[{"Axes", "\[Rule]", "False"}], ",", 
+    RowBox[{"Frame", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"True", ",", "True", ",", "False", ",", "False"}], "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"Directive", "[", 
+      RowBox[{"Black", ",", " ", "16"}], "]"}]}], ",", 
+    RowBox[{"ImageSize", "\[Rule]", "Medium"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetOptions", "[", 
+   RowBox[{"ListPlot", ",", 
+    RowBox[{"Axes", "\[Rule]", "False"}], ",", 
+    RowBox[{"Frame", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"True", ",", "True", ",", "False", ",", "False"}], "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"Directive", "[", 
+      RowBox[{"Black", ",", " ", "14"}], "]"}]}], ",", 
+    RowBox[{"ImageSize", "\[Rule]", "Medium"}]}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8192971015346127`*^9, 3.819297138988415*^9}, {
+  3.8245596614112034`*^9, 3.8245597030775857`*^9}, {3.8369931274480495`*^9, 
+  3.8369931374932184`*^9}, {3.8369984671225915`*^9, 3.8369984786026974`*^9}, {
+  3.8369985103971586`*^9, 3.8369985446475406`*^9}, {3.836998582478528*^9, 
+  3.8369986440974216`*^9}, {3.837005621975683*^9, 3.837005623844515*^9}, {
+  3.837005681887558*^9, 3.8370056830987887`*^9}, {3.837008680867963*^9, 
+  3.837008702283799*^9}, {3.8370093054968*^9, 3.837009306589218*^9}, {
+  3.8372813870572147`*^9, 3.8372813871581507`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["iXBlue - PZ @ 840 nm", "Section",
+ CellChangeTimes->{{3.8372808322549267`*^9, 3.8372808473403535`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"angles", " ", "=", " ", 
+   RowBox[{"Range", "[", 
+    RowBox[{"0", ",", "180", ",", "10"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"power", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+    "452", ",", "446", ",", "330", ",", "180", ",", "38", ",", "2.17", ",", 
+     "75.7", ",", "233", ",", "400", ",", "480", ",", "450", ",", "340", ",", 
+     "176", ",", "42.6", ",", "68.5", ",", "73.2", ",", "212.3", ",", "370.6",
+      ",", "465"}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8372808509844394`*^9, 3.8372809103766713`*^9}, {
+  3.8372809410447187`*^9, 3.837281051112253*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"plt", "=", 
+  RowBox[{"ListPlot", "[", 
+   RowBox[{
+    RowBox[{"Transpose", "@", 
+     RowBox[{"{", 
+      RowBox[{"angles", ",", 
+       RowBox[{"power", "/", 
+        RowBox[{"Max", "[", "power", "]"}]}]}], "}"}]}], ",", 
+    RowBox[{"FrameLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<\[Theta] [deg.]\>\"", ",", "\"\<Normalized power\>\""}], 
+      "}"}]}], ",", 
+    RowBox[{
+    "PlotLabel", "\[Rule]", 
+     "\"\<iXBlue IXF-PZG-840-80, 1 m, 852 nm input\>\""}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.837281054783286*^9, 3.837281119404126*^9}, {
+  3.8372812436186743`*^9, 3.8372813091582794`*^9}, {3.837281370063105*^9, 
+  3.8372813936052885`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      AbsoluteThickness[1.6], PointBox[CompressedData["
+1:eJxTTMoPSmViYGAQBmIQDQNKYPDOHsJTcdizGwTeQvkmDhD6GZRvB+XfgPJd
+HFzAYAuU7+kgd0b4a35LEZTv52Aw7U/SSf0jEH5DoIMgGNyHyoc4rF4FAq+g
+8mFQ8z9A5SOhfKj7GqKh6mHuiXMoB4PrEL5DgsMOudbXgTu2QdUnQt13CMI/
+kOQAkpVrPQzVn+LgL/1iS6PfHaj+VIetjX5AkRdQ/WlQ+9/bAwA+/UpY
+      "]]}, {}}, {}, {}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, False}, {True, False}},
+  FrameLabel->{{
+     FormBox["\"Normalized power\"", TraditionalForm], None}, {
+     FormBox["\"\[Theta] [deg.]\"", TraditionalForm], None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  ImageSize->Medium,
+  LabelStyle->Directive[
+    GrayLevel[0], 14],
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& )}},
+  PlotLabel->FormBox[
+   "\"iXBlue IXF-PZG-840-80, 1 m, 852 nm input\"", TraditionalForm],
+  PlotRange->{{0, 180.}, {0, 1.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.837281121718852*^9, {3.837281285361472*^9, 3.837281309619418*^9}, {
+   3.8372813795271807`*^9, 3.837281394823143*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\<IXF-PZG-840-80_fiber_1m_constrast_202100806.png\>\"", ",", "plt"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.837281396223976*^9, 3.837281431912093*^9}}],
+
+Cell[BoxData["\<\"IXF-PZG-840-80_fiber_1m_constrast_202100806.png\"\>"], \
+"Output",
+ CellChangeTimes->{3.837281434677002*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"max", " ", "=", " ", 
+   RowBox[{"Max", "[", "power", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"min", " ", "=", " ", 
+   RowBox[{"Min", "[", "power", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ FractionBox[
+  RowBox[{"max", "-", "min"}], 
+  RowBox[{"max", "+", "min"}]]}], "Input",
+ CellChangeTimes->{{3.837281154126117*^9, 3.8372812135499954`*^9}}],
+
+Cell[BoxData["0.9909990252400606`"], "Output",
+ CellChangeTimes->{{3.83728120022656*^9, 3.837281214082584*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ FractionBox["min", "max"]], "Input",
+ CellChangeTimes->{{3.8372817735336533`*^9, 3.837281775388484*^9}}],
+
+Cell[BoxData["0.004520833333333333`"], "Output",
+ CellChangeTimes->{3.8372817762210684`*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 697},
+WindowMargins->{{Automatic, -1702}, {Automatic, -251}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 94, 1, 101, "Title"],
+Cell[677, 25, 3215, 81, 297, "Input"],
+Cell[CellGroupData[{
+Cell[3917, 110, 109, 1, 70, "Section"],
+Cell[4029, 113, 649, 15, 69, "Input"],
+Cell[CellGroupData[{
+Cell[4703, 132, 695, 18, 69, "Input"],
+Cell[5401, 152, 1964, 47, 263, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7402, 204, 210, 5, 30, "Input"],
+Cell[7615, 211, 126, 2, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7778, 218, 401, 10, 95, "Input"],
+Cell[8182, 230, 111, 1, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8330, 236, 119, 2, 54, "Input"],
+Cell[8452, 240, 92, 1, 30, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
