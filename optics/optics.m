@@ -1,13 +1,13 @@
 MProp[d_] := {{1, d}, {0, 1}};
 MRefract[n1_, n2_, r_] := {{1, 0}, {(n1 - n2)/(n2 r), n1/n2}};
 MWindow[d_, n1_, n2_] := 
-  MRefract[n2, n1, \[Infinity]] MProp[d] MRefract[n1, n2, \[Infinity]];
+  MRefract[n2, n1, \[Infinity]].MProp[d].MRefract[n1, n2, \[Infinity]];
 MLens [f_] := {{1, 0}, {-1/f, 1}};
 qM[q_, M_] := (q M[[1, 1]] + M[[1, 2]])/(q M[[2, 1]] + M[[2, 2]]);
 wq[q_, z_, \[Lambda]_] := Sqrt[\[Lambda]/(\[Pi] Im[1/(q + z)])];
 w[z_, w0_, \[Lambda]_] := 
   w0 (1 + ((z \[Lambda])/(\[Pi] w0^2))^2)^(1/2);
-  
+
 (*TODO: make beamPropagatePlot call beamPropagate*)
 beamPropagate[qInit_, sys_, \[Lambda]_] := 
  Module[{q = qInit, qNext, lines = {}, i, element, z = 0, zNext, 
