@@ -1,0 +1,17 @@
+INuc = 7/2;(* nuclear spin *)
+Se = 1/2;(* electron spin *)
+mCs = 2.2069465*10^-25; (*[kg]*)
+gS = 2.00023; (*Lande g, spin*)
+gL = 1; 
+gI = -0.00039885395;
+D2MatElem = 3.7971*10^-29;(*<J=1/2||er||J'=3/2>[C*m]*)
+D1MatElem = 3.1822*10^-29;(*<J=1/2||er||J'=1/2>[C*m]*)
+IsatD2 = 1.6536; (*effective far-detuned. mW/cm^2*)
+IsatD1 = 2.4981; (*effective far-detuned. mW/cm^2*)
+\[Lambda]D1 = 894.59295986*10^-9;(*[m]*) 
+\[Lambda]D2 = 852.34727582*10^-9;(*[m]*)
+\[Nu]D1 = 335.116048807; (*[THz]*)
+\[Nu]D2 = 351.72571850;(*[THz]*)
+\[Nu]HF = 9.192631770 ;(*[GHz]*)
+\[CapitalGamma]D2 = 2 \[Pi] 5.2227*10^6 ;(*[rad Hz]*)
+\[CapitalGamma]D1 = 2 \[Pi] 4.5612*10^6 ;(*[rad Hz]*)
