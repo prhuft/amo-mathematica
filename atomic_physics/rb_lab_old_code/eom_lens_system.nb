@@ -1,0 +1,542 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     18615,        534]
+NotebookOptionsPosition[     16915,        473]
+NotebookOutlinePosition[     17286,        489]
+CellTagsIndexPosition[     17243,        486]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["EOM Lens System", "Chapter",
+ CellChangeTimes->{{3.759512762762437*^9, 3.7595127957445946`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[Lambda]", "=", "780"}], ";"}]], "Input",
+ CellChangeTimes->{{3.759513019201087*^9, 3.7595130239244204`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ThinLensMatrix", "[", "f_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "1"}], "/", "f"}], ",", "1"}], "}"}]}], "}"}]}], ";", 
+  RowBox[{"(*", 
+   RowBox[{"f", " ", "[", "mm", "]"}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.7595128057318554`*^9, 3.759512910779482*^9}, 
+   3.759512944644929*^9, {3.7595134922655315`*^9, 3.7595135033489227`*^9}, 
+   3.7595137022203293`*^9, {3.75951398033008*^9, 3.759513986576349*^9}, {
+   3.7595147559812927`*^9, 3.759514762765155*^9}, {3.759514970594624*^9, 
+   3.759514984435581*^9}, 3.7595150606657343`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"PropagationMatrix", "[", "z_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "z"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "transformation", " ", "over", " ", "space", " ", "between", " ", 
+     "lenses"}], ",", " ", 
+    RowBox[{"z", " ", "[", "mm", "]"}]}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.7595135375843716`*^9, 3.759513553413251*^9}, {
+   3.7595136698688498`*^9, 3.7595137419600277`*^9}, {3.759513795727447*^9, 
+   3.759513813829782*^9}, {3.759513988727589*^9, 3.7595140098800297`*^9}, {
+   3.759514766417384*^9, 3.7595147689286747`*^9}, {3.7595149800822215`*^9, 
+   3.759514988444891*^9}, 3.7595150631889906`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"GaussianWaist", "[", 
+    RowBox[{"z_", ",", "w0_"}], "]"}], ":=", 
+   RowBox[{"w0", " ", 
+    RowBox[{"Sqrt", "[", 
+     RowBox[{"1", "+", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"z", " ", "\[Lambda]"}], 
+         RowBox[{"\[Pi]", " ", 
+          SuperscriptBox["w0", "2"]}]], ")"}], "2"]}], "]"}]}]}], ";", 
+  RowBox[{"(*", 
+   RowBox[{"[", "mm", "]"}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.759512916037429*^9, 3.759513049406311*^9}, {
+  3.759513776174533*^9, 3.759513785551669*^9}, {3.759513819810789*^9, 
+  3.759513824883515*^9}, {3.759514486633014*^9, 3.7595144887363977`*^9}, {
+  3.7595159876948276`*^9, 3.7595159938443823`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"WaistAfterLens", "[", 
+   RowBox[{"z_", ",", "f_", ",", "w0_", ",", "\[Theta]_"}], "]"}], ":=", 
+  RowBox[{"Part", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ThinLensMatrix", "[", "f", "]"}], ".", 
+     RowBox[{"{", 
+      RowBox[{"w0", ",", "\[Theta]"}], "}"}]}], ",", "1", ",", "1"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.7595156657281246`*^9, 3.759515826150537*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"WaistAfterLens", "[", 
+    RowBox[{"z", ",", "10", ",", "1", ",", "0"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", "0", ",", "50"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.759515832545435*^9, 3.7595158784074507`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"BeamWaist", "[", 
+   RowBox[{"z_", ",", "w0_"}], "]"}], ":=", 
+  RowBox[{"Piecewise", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"w0", ",", 
+       RowBox[{"0", "<", "z", "<", "10"}]}], "}"}], ",", ",", 
+     RowBox[{"{", "}"}]}], "}"}], "]"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"in", " ", "mm"}], ",", " ", 
+    RowBox[{"for", " ", "w0", " ", "also", " ", "in", " ", "mm"}]}], 
+   "*)"}]}]], "Input",
+ CellChangeTimes->{{3.7595140708549857`*^9, 3.7595140766302123`*^9}, {
+  3.759514160710367*^9, 3.7595141805591416`*^9}, {3.759514399240344*^9, 
+  3.7595146162359047`*^9}, {3.7595146586230373`*^9, 3.7595147004916525`*^9}, {
+  3.7595155642012215`*^9, 3.7595156629136534`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"s", " ", "=", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "10"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.759514708050438*^9, 3.759514733134363*^9}, {
+   3.75951479605413*^9, 3.7595148470176992`*^9}, 3.759515000766942*^9, {
+   3.7595152287732105`*^9, 3.7595152331864476`*^9}, {3.759515499979715*^9, 
+   3.759515511510194*^9}}],
+
+Cell[BoxData[
+ RowBox[{"A", "=", 
+  RowBox[{
+   RowBox[{"ThinLensMatrix", "[", "30", "]"}], ".", "s"}]}]], "Input",
+ CellChangeTimes->{{3.759515007548772*^9, 3.759515019531739*^9}, {
+  3.7595152717582984`*^9, 3.759515293791407*^9}}],
+
+Cell[BoxData[
+ RowBox[{"A", "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7595155353124733`*^9, 3.759515551273815*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Code Debugging", "Subsubsection",
+ CellChangeTimes->{{3.7595153949718013`*^9, 3.7595153959950714`*^9}, {
+  3.7595154638407435`*^9, 3.7595154835007844`*^9}, {3.759515527359807*^9, 
+  3.759515532679515*^9}, {3.7595161253720384`*^9, 3.7595161374890776`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ThinLensMatrix", "[", "10", "]"}], ".", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "0"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.7595160150995398`*^9, 3.759516032436567*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", ",", 
+   RowBox[{"-", 
+    FractionBox["1", "10"]}]}], "}"}]], "Output",
+ CellChangeTimes->{3.759516027497437*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Part", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ThinLensMatrix", "[", "10", "]"}], ".", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "0"}], "}"}]}], ",", "1"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7595160413826723`*^9, 3.759516047420504*^9}}],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{3.759516047811449*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ThinLensMatrix", "[", "10", "]"}], ".", 
+  RowBox[{"PropagationMatrix", "[", "z", "]"}]}]], "Input",
+ CellChangeTimes->{{3.759516143979718*^9, 3.7595161687754107`*^9}, {
+  3.7595162501567802`*^9, 3.759516258418689*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "z"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox["1", "10"]}], ",", 
+     RowBox[{"1", "-", 
+      FractionBox["z", "10"]}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.759516170976524*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"ThinLensMatrix", "[", "10", "]"}], ".", 
+    RowBox[{"PropagationMatrix", "[", "z", "]"}]}], ")"}], ".", 
+  "s"}]], "Input",
+ CellChangeTimes->{{3.7595162603814373`*^9, 3.7595162658538094`*^9}, 
+   3.7595163510370073`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"1", "+", 
+     RowBox[{"10", " ", "z"}]}], ",", 
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox["1", "10"]}], "+", 
+     RowBox[{"10", " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "-", 
+        FractionBox["z", "10"]}], ")"}]}]}]}], "}"}], "//", "FullSimplify"}]],\
+ "Input",
+ CellChangeTimes->{{3.759516364920885*^9, 3.7595163714095936`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"1", "+", 
+    RowBox[{"10", " ", "z"}]}], ",", 
+   RowBox[{
+    FractionBox["99", "10"], "-", "z"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.759516368698842*^9, 3.75951637184443*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Part", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"ThinLensMatrix", "[", "10", "]"}], ".", 
+      RowBox[{"PropagationMatrix", "[", "z", "]"}]}], ")"}], ".", "s"}], ",", 
+   "1"}], "]"}]], "Input",
+ CellChangeTimes->{{3.759516434381195*^9, 3.7595164444737453`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"1", "+", 
+  RowBox[{"10", " ", "z"}]}]], "Output",
+ CellChangeTimes->{3.7595164450142956`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", "s", "]"}]], "Input",
+ CellChangeTimes->{{3.7595165254657125`*^9, 3.759516527765439*^9}}],
+
+Cell["\<\
+Plot the beam coming out of a thin lens of f=10, for the ingoing beam \
+collimated, assuming ideal ray behavior.\
+\>", "Text",
+ CellChangeTimes->{{3.7595171231721745`*^9, 3.759517135521182*^9}, {
+  3.7595171907444735`*^9, 3.7595172458979797`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"Part", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"PropagationMatrix", "[", "z", "]"}], ".", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"ThinLensMatrix", "[", "10", "]"}], ".", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}]}], ")"}]}], ",", "1"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", "0", ",", "10"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7595164537978044`*^9, 3.7595165021510615`*^9}, {
+  3.7595165503340535`*^9, 3.7595165600371294`*^9}, {3.759517164609393*^9, 
+  3.7595171765135536`*^9}, {3.759580671784989*^9, 3.759580698567402*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], Opacity[
+     1.], LineBox[CompressedData["
+1:eJwVzn8803kcwPE5lMesMpUfyTY/Hk1LDv1GvT+mu4rlSHKn7jBlYn6euU7a
+uWWN81BzFlLOr5u7cqZ6jAfltHDJGhWiotGY34zTjolz3/vj/Xg/no/X4/14
+vG2YcSfOfYLD4Y5j8/8u4jLXuJzNOpRPNtaurmqgpYvCCKKch7plYkvqigZW
+nzReplC+h9dvLHJ1SxookmWTDSmZYCna5jKv1QD7ICdmgXwDbhnRY0YmNdD1
+MVI0S74NJXMX1IpeDaztU1GnyfVwp3nk1Y1qDZTKixMmyW3QwGqq3RWiAUl1
+Zh/b6S1ETRhqB+/OAAte3phKHIINg/t+slo/A7Hq7UNSyTj07VHxBLHTgLdJ
+pw7snwWXJxaL7MdTcNXkGa00dB4utR1sGSBPAbPv5CN9xT8QsFZDUMRPQsJf
+6cw46hL4iS3qx1sm4F48IcDi2Ap41To3iOwnoPRi9IRzEA7J9F651yePA694
+2f/DlB5ylbFMo7vHANc1iBpS9FG7MpHhu2cMtiVFXDhJM0Sz+/D6lRmjMKzN
+P2X85xpkbCA0uT46At7qqEs/JxihanxZ4eL+EfAdFu4gkfAoJcExIztbDRPN
+zLSnVcbIw0esqJ4eBidij7VXyDokCLmT7YOGAQ/asP759ejpSJE46ZchODId
+vGAbaIJEv1u7mWtU8LrprF6wIxFdkW92naSroCaj5RuKlojiQpbTGGXvIcKQ
+M9jRYYpUTnEM6odBCE+8WEMo3Ii8E17EXvMfhE9ZOzoYYZuQlHpy3P/sADw3
+dTTmHNiMxt6TZ77DK+GhhHfTUd8MGfGeltS19sNFPZqf4p0ZcsvPZEyd7wN8
+f8rRWKk5amC7P+KZvgV1hY2oONUC0RzkA7s6X4PIwdKgPtAS/fFlgq43uReE
+hRGtYZQtyCJOK8tz7YFg0dcdhNEtqOezqC/qPnTD4mGxrrjRClXkLPQobnbB
+kJp+oUmwFYU2hxGWv+qEsoMuVu1h1sg5atiNtPICqvgcImsnCXVPC5xqY5+D
+IDDcR19LQmMCB45Wo4A9/aW3Be1kRCEsVW1xl0PB9ptV7T4U5HyGT+dIW+EH
+WXaBTz0FsfM822oWWuC4VaBYbm+DDvsPvHt4pAk8Y1tPEzNt0Gx1zK2ZrEdQ
+vJVpr9DaoJIcbpjL1gdg3/xbnu9pW4Qz1lcqjWpAuLOJ1tloiwr43snmG+5C
+xLzByzaaHcLdHlXvOyEG5r2/KZnX7FDoFP2WIzcP2LyAZe8cOyTzY2h22ecB
+J0DaS8jFek0g3V1+HTK0nKvCPMzcyLFjZtdBckD3Mb8Is8nV3SxJLuger/ZU
+VNqhtN1vFKVKIQg7CdktrZh1yqWd3CtQWB4TeaXNDqGmuRIPOR/Kkzq8jj7D
+epbBER8zPtSaCZeedWC2puVGSi5Df/DGyK5XmD05O8qVaUAdsvRSDWH/bzKv
+c+Ymg7M0hfSrGnOFh4GvGQfc+H26c6OY9zP9oiXfAoNadHd8Ars/UzUmVsZD
+YjSFNDeH9WMC173cCEj1+FF3fx4zu1MeLwkH/jpVd5IWc451eKUyFAqqy7MW
+FzHfZ1E9uaegLM2A9WAJ8+JKUK3SDyr9z9FTlzGnOxCDuJ+D1PaJ9aF/MTvf
+GeZx90Lj/Dbd6ipmHK5TNh546D+gdEgR
+      "]]}}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "ScalingFunctions" -> None, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 10}, {0., 0.9999999795918367}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.759580699983609*^9}]
+}, Open  ]],
+
+Cell["\<\
+How to use Gaussian waist rather than ray trace? Below, GaussianWaist is \
+taking w0 = the width right out of the lens, which is wrong. \
+\>", "Text",
+ CellChangeTimes->{{3.7595173896322107`*^9, 3.7595174673984537`*^9}, {
+  3.7595807588760986`*^9, 3.7595808097781377`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"GaussianWaist", "[", 
+    RowBox[{
+     RowBox[{"z", "-", "10"}], ",", 
+     RowBox[{"Part", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"ThinLensMatrix", "[", "10", "]"}], ".", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}]}], ",", "1"}], "]"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", "0", ",", "1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.759517248667571*^9, 3.7595173365132627`*^9}, {
+  3.759517369603773*^9, 3.7595173729986916`*^9}, {3.7595255913971844`*^9, 
+  3.759525592543096*^9}, {3.7595806493240557`*^9, 3.7595806521814184`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], Opacity[
+     1.], LineBox[CompressedData["
+1:eJwVzHs0lAkcxnE0YXPQ6DpFNa3LSsURra6/X41Nhd2MaSO3OVKLveQyWJdW
+IzNbqTXHsbabeN+XCptRoURxpJsGaYRaZjINS4M3rVyyNfvuH895zuefLzf8
+MP+gkYGBgS+z/3/3wcH2hqG9W7e5eCaSBylk8ZbEqDlu4OGWkpzKeF3BmQs3
+OJ6wzqMiTcDYu6Xrej5HAPZofcyY8b6IyTs5nAhYuGc8OzqCwl7nX3mnOSJY
+EVNU4nqAwsIF30hPcjKhs4LV2yikUGx6w+EEJxca3O7zXgdRGBBIyN+OFYG3
+SZAz349CM7042GuZHFo23w8ReVFo5zc6eC+rEvx9OYsfbaEwqXUDnBmvgSTn
+jLe71lG4qJKtMjSsh4ux9WbpjhRWa3iKts2NIDjO/kqzjMLG6PylgcNNkJrq
+OydpPoXv7bdYXv3xIWQ9CbGqn0Oh0XTZ3KV2zfDunwwPdwMK1+uF1f7lCqhO
+SiNCJ0hUZLq1PljVBoqOsLyaYRKXy3TTJaNPYcI8oGS7hkTdpFr13OUZRBTY
+6n/pJrHoTW2zxW9K+GhpHD/UQqKFzWVaq+2AyKD2OMk9Ek9FVR0qtO2EFzMx
+VR01JE5gmTYyvQui0u0W8uUkilybKhfe64awb8trMopJVJc3ZbVzX0LpPJ/U
+vnMkzkR3nHdM+QtGSpWPYmUkOm0z+XSotgcgxzmwSkqiF8n97toiFegPFJo4
+pJGYZBO2si9YDdaZ/VPecSSuHt5r1uX7CjpT5ieSkSTOs3xr2vThFSwQBrAd
+Qklk1Z+Xf36hDwSyGDpUQOL3brUvPvPWQML1fF3TLhLLdoUX3p3QQOeflfHB
+QOJ73ZK5A3mvoXq0YOtldxKr/L1m5Xpq4bF9ocMKJxLTd0oKKge0kFck8vfh
+ksjt3d1NSfph6aSrWekiEjd+mZnLcR0Aa0/jPndzEoOXtU0bKgfAX3l1WjSL
+6Tef1sSI/waZMNpFM0XgGVaoiG87CGvWzpQY0QTOU1WRRk2DIG5LkAv6CZx9
+RCzYEDsEgvjZyo6XBBqUhMo1Vm9A5R+1wbSdwLhz8tNWjW8gd6PmTtQDAu84
+HTdl/6SDtgnP1n9rCWTvjludYTEMY7pULu86gT1rniqT64ZhQvcw5+ZlAisu
+gq02dASmVg7uUOcTGCJfz7b5NAJXnN5JPXIJPCohxD2lo0Dz2P31Jwi8Omhz
+3sKHhv3ZLOmHdAKP50uEqq9paHyk1bYyjuCP2JX70eBodJ9HMbauq6vw3UfD
+R5HE0IfxyeygB6fCabi53/hI/i8ERq4/OzYnmYbD9qYiPELgysz5O00u0TB6
+1yxcmkLgJ480864rNByb0jXsZ/xi5PWzS2U0cFwVy50Zy/bdCNlxjYadxad6
+u5IJ1K/ix0vqmH6WeaAj45727IuzlDT0BFjuUSQReEs6eUD5nAZpDl1eyDh3
+U5gj1U2Dm6LNPIGxd/Hayu0qGmQge2LD+PbPLY/FQzQE27O9DicSmLfGPdtv
+mAYr4Vgxj3Gs5oKAS9PQfLadtZjxFz4/qBvGaQDznMaGBAJZhh1FskkaZnbE
+cX9n/KpqU7TwAw23jvKPRjGui6acXT7SkHjbVb2F8R/Lzd7r9TR4jFtttWL8
+HwprYeU=
+      "]]}}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 2234.5356298373335`},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "ScalingFunctions" -> None, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 1}, {2234.5356298373335`, 2482.81730855073}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.7595173164399405`*^9, 3.7595173369650507`*^9}, 
+   3.759517373523287*^9, 3.7595255933060503`*^9, 3.7595806551655054`*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{766, 812},
+WindowMargins->{{Automatic, -7}, {Automatic, 0}},
+Magnification:>1.1 Inherited,
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 102, 1, 79, "Chapter"],
+Cell[685, 25, 145, 3, 33, "Input"],
+Cell[833, 30, 726, 18, 33, "Input"],
+Cell[1562, 50, 809, 20, 78, "Input"],
+Cell[2374, 72, 729, 19, 60, "Input"],
+Cell[3106, 93, 414, 11, 33, "Input"],
+Cell[3523, 106, 296, 7, 33, "Input"],
+Cell[3822, 115, 745, 19, 56, "Input"],
+Cell[4570, 136, 345, 7, 33, "Input"],
+Cell[4918, 145, 232, 5, 33, "Input"],
+Cell[5153, 152, 145, 3, 33, "Input"],
+Cell[CellGroupData[{
+Cell[5323, 159, 261, 3, 43, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[5609, 166, 206, 5, 33, "Input"],
+Cell[5818, 173, 158, 5, 50, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6013, 183, 267, 7, 33, "Input"],
+Cell[6283, 192, 70, 1, 33, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6390, 198, 254, 5, 33, "Input"],
+Cell[6647, 205, 312, 11, 50, "Output"]
+}, Open  ]],
+Cell[6974, 219, 287, 8, 33, "Input"],
+Cell[CellGroupData[{
+Cell[7286, 231, 412, 14, 57, InheritFromParent],
+Cell[7701, 247, 237, 7, 50, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7975, 259, 321, 9, 33, "Input"],
+Cell[8299, 270, 118, 3, 33, "Output"]
+}, Open  ]],
+Cell[8432, 276, 126, 2, 33, "Input"],
+Cell[8561, 280, 257, 5, 53, "Text"],
+Cell[CellGroupData[{
+Cell[8843, 289, 653, 16, 56, "Input"],
+Cell[9499, 307, 3146, 65, 260, "Output"]
+}, Open  ]],
+Cell[12660, 375, 283, 5, 53, "Text"],
+Cell[CellGroupData[{
+Cell[12968, 384, 648, 16, 33, "Input"],
+Cell[13619, 402, 3256, 66, 255, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

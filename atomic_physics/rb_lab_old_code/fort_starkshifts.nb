@@ -1,0 +1,905 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     33012,        897]
+NotebookOptionsPosition[     30286,        801]
+NotebookOutlinePosition[     30629,        816]
+CellTagsIndexPosition[     30586,        813]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Stark shifts in the FORT", "Section",
+ CellChangeTimes->{{3.770119387673168*^9, 3.770119392312724*^9}, {
+  3.770125065363826*^9, 3.7701250688844385`*^9}, {3.7701251270866175`*^9, 
+  3.77012513692391*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Polarizabilities obtained from T.G. Walker.", "Subsubsection",
+ CellChangeTimes->{{3.7701315243768225`*^9, 3.77013155268839*^9}, {
+  3.7711608139746466`*^9, 3.7711608191363325`*^9}}],
+
+Cell["For the 5p3/2 state 1064 nm light:", "Text",
+ CellChangeTimes->{{3.7701194064912386`*^9, 3.770119523339619*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[Epsilon]0", " ", "=", " ", 
+   RowBox[{"8.854", "*", 
+    RowBox[{"10", "^", 
+     RowBox[{"-", "12"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"h", " ", "=", " ", 
+   RowBox[{"6.626", "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "34"}]]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"c", " ", "=", " ", 
+   RowBox[{"2.9987", "*", 
+    SuperscriptBox["10", "8"]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"kB", " ", "=", " ", 
+   RowBox[{"1.3807", "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "23"}]]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.770120524526002*^9, 3.770120538625347*^9}, {
+   3.770120579036807*^9, 3.770120585018403*^9}, {3.7701215968912506`*^9, 
+   3.7701216105421143`*^9}, {3.7711608579845176`*^9, 
+   3.7711608588370123`*^9}, {3.771161315925208*^9, 3.7711613165789056`*^9}, {
+   3.7711836904981575`*^9, 3.7711837025070643`*^9}, 3.7711839304595594`*^9, {
+   3.7712453030563197`*^9, 3.7712453045537443`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"leakage", " ", "=", " ", ".05"}], " ", ";", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "percentage", " ", "of", " ", "total", " ", "FORT", " ", "power", " ", 
+     "getting", " ", "to", " ", "atoms"}], ";", " ", 
+    RowBox[{
+     RowBox[{"e", ".", "g", ".", " ", "leakage"}], " ", "is", " ", "about", 
+     " ", ".05"}]}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.7711613175932164`*^9, 3.7711613553964043`*^9}, {
+  3.77134576425187*^9, 3.7713457665527554`*^9}, {3.7713459501079335`*^9, 
+  3.7713459643554797`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[Alpha]05pThreeHalves", " ", "=", " ", 
+   RowBox[{"4", " ", "\[Pi]", " ", "\[Epsilon]0", "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "6"}]], "*", 
+    RowBox[{"-", "143.77"}], "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "24"}]]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Alpha]25pThreeHalves", " ", "=", " ", 
+    RowBox[{"4", " ", "\[Pi]", " ", "\[Epsilon]0", " ", "*", 
+     SuperscriptBox["10", 
+      RowBox[{"-", "6"}]], "*", "74.44", "*", 
+     SuperscriptBox["10", 
+      RowBox[{"-", "24"}]]}]}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"SI", " ", "units"}], "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.7701195259328766`*^9, 3.7701195569195814`*^9}, {
+  3.7701195961118565`*^9, 3.770119613366047*^9}, {3.77012047053942*^9, 
+  3.770120515909608*^9}, {3.7701205916285543`*^9, 3.770120592617179*^9}, {
+  3.7701211501376944`*^9, 3.770121165642688*^9}, {3.7701214439981375`*^9, 
+  3.77012146581294*^9}, {3.7701219304987383`*^9, 3.7701219437717876`*^9}, {
+  3.770122999284793*^9, 3.7701230410005507`*^9}, {3.770123405877013*^9, 
+  3.770123410713542*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Uac", "[", 
+    RowBox[{
+    "F_", ",", "mF_", ",", "J_", ",", "i_", ",", "E_", ",", "\[Alpha]0_", ",",
+      "\[Alpha]2_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox["1", "4"]}], "\[Alpha]0", " ", 
+     SuperscriptBox["E", "2"]}], "-", 
+    RowBox[{
+     FractionBox["1", "4"], "\[Alpha]2", " ", 
+     SuperscriptBox["E", "2"], 
+     FractionBox[
+      RowBox[{
+       RowBox[{"3", " ", 
+        SuperscriptBox["mF", "2"]}], "-", 
+       RowBox[{"F", 
+        RowBox[{"(", 
+         RowBox[{"F", "+", "1"}], ")"}], " "}]}], 
+      RowBox[{"F", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", "F"}], "-", "1"}], ")"}]}]], " ", 
+     FractionBox[
+      RowBox[{
+       RowBox[{"3", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"F", 
+           RowBox[{"(", 
+            RowBox[{"F", "+", "1"}], ")"}]}], "+", 
+          RowBox[{"J", 
+           RowBox[{"(", 
+            RowBox[{"J", "+", "1"}], ")"}]}], "\[Minus]", 
+          RowBox[{"i", 
+           RowBox[{"(", 
+            RowBox[{"i", "+", "1"}], ")"}]}]}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"F", 
+             RowBox[{"(", 
+              RowBox[{"F", "+", "1"}], ")"}]}], "+", 
+            RowBox[{"J", 
+             RowBox[{"(", 
+              RowBox[{"J", "+", "1"}], ")"}]}], "\[Minus]", 
+            RowBox[{"i", 
+             RowBox[{"(", 
+              RowBox[{"i", "+", "1"}], ")"}]}]}], ")"}], " ", "-", " ", "1"}],
+          ")"}]}], " ", "-", " ", 
+       RowBox[{"4", "F", 
+        RowBox[{"(", 
+         RowBox[{"F", "+", "1"}], ")"}], "J", 
+        RowBox[{"(", 
+         RowBox[{"J", "+", "1"}], ")"}]}]}], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", " ", "F"}], " ", "+", "2"}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", "F"}], "+", "3"}], ")"}], " ", "J", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", " ", "J"}], " ", "-", "1"}], ")"}]}]]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"cgsToSI", "[", "\[Alpha]_", "]"}], ":=", 
+   RowBox[{"4", "\[Pi]", " ", "\[Epsilon]0", "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "6"}]], " ", "\[Alpha]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"JToMHz", "[", "U_", "]"}], ":=", " ", 
+   RowBox[{"U", "/", 
+    RowBox[{"(", 
+     RowBox[{"h", "*", 
+      SuperscriptBox["10", "6"]}], ")"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.770119835252473*^9, 3.7701198528670387`*^9}, {
+  3.7701199382118273`*^9, 3.770120259303851*^9}, {3.7701203318869634`*^9, 
+  3.7701203833456326`*^9}, {3.770122163199156*^9, 3.7701222197109995`*^9}, {
+  3.7701223584258056`*^9, 3.7701224003218307`*^9}, {3.7701230564549303`*^9, 
+  3.770123071776763*^9}}],
+
+Cell[BoxData[
+ RowBox[{" ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Efield", "[", "P_", "]"}], " ", ":=", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{"4", "P"}], 
+       RowBox[{"c", " ", "\[Epsilon]0", " ", "\[Pi]", " ", 
+        SuperscriptBox["w0", "2"]}]], ")"}], 
+     RowBox[{"1", "/", "2"}]]}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.7701202656349893`*^9, 3.770120267698228*^9}, {
+  3.7701206097035923`*^9, 3.770120611721569*^9}, {3.770120759585726*^9, 
+  3.7701207979111423`*^9}, {3.770120867785818*^9, 3.7701209063800163`*^9}, {
+  3.7701209636106033`*^9, 3.770120979127578*^9}, {3.7701220115727654`*^9, 
+  3.7701220143972783`*^9}, {3.7701236897401915`*^9, 3.7701236933084106`*^9}, {
+  3.7701279912589283`*^9, 3.770127996828518*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"P", " ", "=", " ", 
+    RowBox[{".384", "*", ".4"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"w0", " ", "=", " ", 
+   RowBox[{"2.5", "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "6"}]]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.7701209108959117`*^9, 3.7701209359259996`*^9}, {
+  3.771161026179352*^9, 3.7711610583394012`*^9}, {3.771345799581414*^9, 
+  3.7713458050737267`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"JToMHz", "[", 
+  RowBox[{"Uac", "[", 
+   RowBox[{"3", ",", "0", ",", 
+    RowBox[{"3", "/", "2"}], ",", 
+    RowBox[{"3", "/", "2"}], ",", 
+    RowBox[{"Efield", "[", 
+     RowBox[{".05", "*", "P"}], "]"}], ",", "\[Alpha]05pThreeHalves", ",", 
+    "\[Alpha]25pThreeHalves"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.770120982845497*^9, 3.7701209959393177`*^9}, {
+   3.7701210661584206`*^9, 3.770121122771355*^9}, 3.7701214887004547`*^9, {
+   3.7701215296322083`*^9, 3.770121538843633*^9}, {3.770121653761344*^9, 
+   3.7701216767637396`*^9}, {3.770121985340956*^9, 3.770121985432582*^9}, {
+   3.7701230908898582`*^9, 3.7701231104348135`*^9}, {3.7701231472552147`*^9, 
+   3.770123179588961*^9}, {3.770123751772414*^9, 3.770123754544402*^9}, {
+   3.7701284419675856`*^9, 3.770128445280187*^9}, {3.771161052736577*^9, 
+   3.771161065177475*^9}}],
+
+Cell[BoxData["6.549073971897535`"], "Output",
+ CellChangeTimes->{{3.7701231116230593`*^9, 3.7701231810364532`*^9}, 
+   3.770128446000378*^9, {3.7711608817761507`*^9, 3.77116089136285*^9}, 
+   3.771161036135996*^9, 3.771161066484928*^9, 3.771345446277067*^9, 
+   3.771345772145762*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"130.98147943795067`", " ", 
+  RowBox[{"(*", "MHz", "*)"}]}]], "Input",
+ CellChangeTimes->{{3.770122055672969*^9, 3.770122064800784*^9}}],
+
+Cell[BoxData["130.98147943795067`"], "Output",
+ CellChangeTimes->{3.771345446311974*^9, 3.7713457721657934`*^9}]
+}, Open  ]],
+
+Cell["For the 5s1/2 state 1064 nm light:", "Text",
+ CellChangeTimes->{{3.7701194064912386`*^9, 3.770119523339619*^9}, {
+  3.7701211903036027`*^9, 3.770121191499274*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[Alpha]05sOneHalf", " ", "=", " ", 
+  RowBox[{"cgsToSI", "[", 
+   RowBox[{"97", "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "24"}]]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7701221400613885`*^9, 3.770122145862715*^9}, {
+  3.7701222342246995`*^9, 3.7701223391839046`*^9}, {3.770122643799085*^9, 
+  3.7701226451751237`*^9}, {3.770123083490699*^9, 3.770123086309115*^9}, {
+  3.770123197319396*^9, 3.7701231980921035`*^9}, {3.770123391271623*^9, 
+  3.7701233943540044`*^9}, {3.7712458957578015`*^9, 3.771245895847577*^9}}],
+
+Cell[BoxData["1.0792476605695003`*^-38"], "Output",
+ CellChangeTimes->{3.770123198573901*^9, 3.7701233951387663`*^9, 
+  3.7711609224743786`*^9, 3.7711610714786625`*^9, 3.771245897084733*^9, 
+  3.7713454463299246`*^9, 3.771345772188652*^9, 3.771345815260485*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GroundStateShift", " ", "=", " ", 
+  RowBox[{"JToMHz", "[", 
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox["1", "4"]}], "\[Alpha]05sOneHalf", " ", 
+    SuperscriptBox[
+     RowBox[{"Efield", "[", "P", "]"}], "2"]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7701224321166067`*^9, 3.7701224584190106`*^9}, 
+   3.770122666502117*^9, {3.770123698832412*^9, 3.7701237374233217`*^9}, {
+   3.7701284501946*^9, 3.7701284544249544`*^9}, 3.7711609760266066`*^9, {
+   3.7711610790387077`*^9, 3.771161081990899*^9}, {3.77116130416549*^9, 
+   3.7711613064854584`*^9}, {3.771345972867509*^9, 3.771345973933691*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", "2.39954266931507`"}]], "Output",
+ CellChangeTimes->{{3.7701224380286045`*^9, 3.7701224589533367`*^9}, 
+   3.7701226709643564`*^9, 3.7701228147980585`*^9, 3.770123254475154*^9, 
+   3.770123418622983*^9, 3.7701237000227103`*^9, 3.770123743619854*^9, 
+   3.770128455496806*^9, {3.7711609245868435`*^9, 3.7711609465469055`*^9}, 
+   3.7711609777109823`*^9, 3.771161083002245*^9, 3.77116136759206*^9, 
+   3.771345446350047*^9, 3.7713457722126446`*^9, 3.771345817780299*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Differential AC Stark shifts on D2 cooling transition",
+ FontWeight->"Bold"]], "Subsubsection",
+ CellChangeTimes->{{3.7711616116230493`*^9, 3.7711616275540934`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DiffACShifts", " ", "=", " ", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"mF", ",", 
+      RowBox[{
+       RowBox[{"JToMHz", "[", 
+        RowBox[{"Uac", "[", 
+         RowBox[{"3", ",", "mF", ",", 
+          RowBox[{"3", "/", "2"}], ",", 
+          RowBox[{"3", "/", "2"}], ",", 
+          RowBox[{"Efield", "[", "P", "]"}], ",", "\[Alpha]05pThreeHalves", 
+          ",", "\[Alpha]25pThreeHalves"}], "]"}], "]"}], "-", 
+       "GroundStateShift"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"mF", ",", 
+      RowBox[{"-", "3"}], ",", "3"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.770123759059065*^9, 3.77012376605963*^9}, {
+  3.7701243626758356`*^9, 3.770124479797929*^9}, {3.7701245210711637`*^9, 
+  3.7701245408526278`*^9}, {3.7701247879583874`*^9, 3.770124790693812*^9}, {
+  3.7701248332029505`*^9, 3.7701248410857425`*^9}, {3.7701284604717293`*^9, 
+  3.7701284646604657`*^9}, {3.770130588500784*^9, 3.7701305902776833`*^9}, {
+  3.771161114940504*^9, 3.7711611200093827`*^9}, {3.7711612702854815`*^9, 
+  3.771161295781433*^9}, {3.77116146862848*^9, 3.7711614699116106`*^9}, {
+  3.7713459787827272`*^9, 3.7713459798089414`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "3"}], ",", "36.70063406387462`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "2"}], ",", "73.52990340486716`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "95.62746500946268`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "102.9933188776612`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "95.62746500946268`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "73.52990340486716`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "36.70063406387462`"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.7701245899893723`*^9, 3.7701247933077354`*^9, 3.770124843999238*^9, 
+   3.7701283635299063`*^9, 3.770128465419793*^9, 3.7701305908493805`*^9, {
+   3.7711609266507015`*^9, 3.7711609490452623`*^9}, 3.7711609817335553`*^9, 
+   3.771161086132078*^9, 3.7711611219080715`*^9, 3.7711613713185153`*^9, 
+   3.771161471012582*^9, 3.771345446371904*^9, 3.7713457722365217`*^9, {
+   3.7713458216438103`*^9, 3.771345841710762*^9}}]
+}, Open  ]],
+
+Cell["\<\
+The light shifts for theses transitions are positive, and the PGC light seen \
+from the atoms perspective is an additional 166-204 MHz detuned at for 500 mW \
+at the atoms, and 40% of this at the center trap\
+\>", "Text",
+ CellChangeTimes->{{3.770124951068324*^9, 3.7701250481282997`*^9}, {
+  3.77012963692216*^9, 3.77012965883177*^9}, {3.771161653316379*^9, 
+  3.7711616555126257`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"DiffACShifts", ",", 
+   RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+   RowBox[{
+   "PlotLabel", "\[Rule]", 
+    "\"\<Light shift in 1064 nm trap for \!\(\*TemplateBox[{RowBox[{\"5\", 
+SubscriptBox[\"s\", 
+RowBox[{\"1\", \"/\", \"2\"}]]}]},
+\"Ket\"]\)\[Rule]\!\(\*TemplateBox[{RowBox[{
+RowBox[{
+RowBox[{\"5\", 
+SubscriptBox[\"p\", 
+RowBox[{\"3\", \"/\", \"2\"}]], \"F\"}], \"=\", \"3\"}], \",\", \"mF\"}]},
+\"Ket\"]\)\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7701245968917503`*^9, 3.7701245972994285`*^9}, {
+  3.770124709489586*^9, 3.7701247100783587`*^9}, {3.7701248554990225`*^9, 
+  3.7701249216264143`*^9}, {3.7701277786156197`*^9, 3.7701279617240715`*^9}, {
+  3.7701306140810423`*^9, 3.7701306148066883`*^9}, {3.771161143292368*^9, 
+  3.7711611469096622`*^9}, {3.7711614755375996`*^9, 3.7711614761327972`*^9}, {
+  3.7713458476997557`*^9, 3.7713458502904134`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      AbsoluteThickness[1.6], 
+     PointBox[{{-3., 36.70063406387462}, {-2., 73.52990340486716}, {-1., 
+      95.62746500946268}, {0., 102.9933188776612}, {1., 95.62746500946268}, {
+      2., 73.52990340486716}, {3., 
+      36.70063406387462}}]}, {}}, {}, {}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& )}},
+  PlotLabel->FormBox[
+   "\"Light shift in 1064 nm trap for \
+\\!\\(\\*TemplateBox[{RowBox[{\\\"5\\\", SubscriptBox[\\\"s\\\", \
+RowBox[{\\\"1\\\", \\\"/\\\", \\\"2\\\"}]]}]},\\n\\\"Ket\\\"]\\)\[Rule]\\!\\(\
+\\*TemplateBox[{RowBox[{RowBox[{RowBox[{\\\"5\\\", SubscriptBox[\\\"p\\\", \
+RowBox[{\\\"3\\\", \\\"/\\\", \\\"2\\\"}]], \\\"F\\\"}], \\\"=\\\", \
+\\\"3\\\"}], \\\",\\\", \\\"mF\\\"}]},\\n\\\"Ket\\\"]\\)\"", TraditionalForm],
+  PlotRange->{{-3., 3.}, {0, 102.9933188776612}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.7701248598808017`*^9, {3.7701248905064797`*^9, 3.7701249224567156`*^9}, {
+   3.7701278084870367`*^9, 3.7701278279740076`*^9}, {3.7701279421744366`*^9, 
+   3.770127962992341*^9}, 3.770128368051283*^9, 3.770128471692915*^9, {
+   3.7701305991065807`*^9, 3.770130615856191*^9}, 3.7711609300356827`*^9, 
+   3.771160985415224*^9, 3.7711610890226994`*^9, {3.7711611249391317`*^9, 
+   3.771161147815852*^9}, 3.7711613735166492`*^9, 3.7711614770464287`*^9, 
+   3.7713454466949563`*^9, {3.7713457723086643`*^9, 3.7713457823883753`*^9}, {
+   3.771345824871785*^9, 3.771345851006931*^9}}]
+}, Open  ]],
+
+Cell["For different powers:", "Text",
+ CellChangeTimes->{{3.7701296281579585`*^9, 3.7701296312986345`*^9}, {
+  3.7701305477485266`*^9, 3.770130550968072*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"ListPlot", "[", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"mF", ",", 
+         RowBox[{
+          RowBox[{"JToMHz", "[", 
+           RowBox[{"Uac", "[", 
+            RowBox[{"3", ",", "mF", ",", 
+             RowBox[{"3", "/", "2"}], ",", 
+             RowBox[{"3", "/", "2"}], ",", 
+             RowBox[{"Efield", "[", 
+              RowBox[{".4", "*", "P"}], "]"}], ",", "\[Alpha]05pThreeHalves", 
+             ",", "\[Alpha]25pThreeHalves"}], "]"}], "]"}], "-", 
+          "GroundStateShift"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"mF", ",", 
+         RowBox[{"-", "3"}], ",", "3"}], "}"}]}], "]"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"P", ",", 
+      RowBox[{"{", 
+       RowBox[{".2", ",", ".3", ",", ".4", ",", ".5"}], "}"}]}], "}"}]}], 
+   "]"}], "*)"}]], "Input",
+ CellChangeTimes->{{3.770128058574173*^9, 3.7701280758558135`*^9}, {
+   3.7701281215617743`*^9, 3.770128131200552*^9}, {3.7701281641482315`*^9, 
+   3.770128210830093*^9}, {3.770128247289114*^9, 3.7701282676989346`*^9}, {
+   3.770128341815635*^9, 3.770128342914282*^9}, 3.77012840298405*^9, {
+   3.7701284778959494`*^9, 3.770128482276388*^9}, {3.7701306294014754`*^9, 
+   3.770130631075506*^9}, {3.7711613866328897`*^9, 3.7711614103295364`*^9}, {
+   3.771345864596484*^9, 3.7713458667050266`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Excited state shifts only",
+ FontWeight->"Bold"]], "Subsubsection",
+ CellChangeTimes->{{3.771161416952175*^9, 3.7711614409495387`*^9}, {
+  3.7711615779879084`*^9, 3.7711615973177423`*^9}, {3.7711616338288684`*^9, 
+  3.771161634974699*^9}}],
+
+Cell["Shifts with only 5% power leaking through the AOM.", "Text",
+ CellChangeTimes->{{3.7711834527344036`*^9, 3.7711834790574865`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"leakage", " ", "=", " ", ".05"}]], "Input",
+ CellChangeTimes->{{3.7711834640850925`*^9, 3.771183466827516*^9}, {
+  3.7713459346757517`*^9, 3.7713459373503976`*^9}}],
+
+Cell[BoxData["0.05`"], "Output",
+ CellChangeTimes->{3.7713454468206162`*^9, 3.7713457723711615`*^9, 
+  3.7713459128743105`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ExcitedACShifts", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"mF", ",", 
+      RowBox[{"JToMHz", "[", 
+       RowBox[{"Uac", "[", 
+        RowBox[{"3", ",", "mF", ",", 
+         RowBox[{"3", "/", "2"}], ",", 
+         RowBox[{"3", "/", "2"}], ",", 
+         RowBox[{"Efield", "[", 
+          RowBox[{"leakage", "*", "P"}], "]"}], ",", "\[Alpha]05pThreeHalves",
+          ",", "\[Alpha]25pThreeHalves"}], "]"}], "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"mF", ",", 
+      RowBox[{"-", "3"}], ",", "3"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.77116149830462*^9, 3.771161551489746*^9}, {
+  3.77134590280249*^9, 3.771345942689121*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "3"}], ",", "1.7150545697279775`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "2"}], ",", "3.556518036777604`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "4.6613961170073805`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "5.029688810417306`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "4.6613961170073805`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "3.556518036777604`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "1.7150545697279775`"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.771161554332308*^9, 3.771345446864496*^9, 3.771345772391133*^9, {
+   3.771345879321516*^9, 3.7713459175206494`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"ExcitedACShifts", ",", 
+   RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+   RowBox[{
+   "PlotLabel", "\[Rule]", 
+    "\"\<Light shift in 1064 nm trap for \!\(\*TemplateBox[{RowBox[{\"5\", 
+SubscriptBox[\"s\", 
+RowBox[{\"1\", \"/\", \"2\"}]]}]},
+\"Ket\"]\)\[Rule]\!\(\*TemplateBox[{RowBox[{
+RowBox[{
+RowBox[{\"5\", 
+SubscriptBox[\"p\", 
+RowBox[{\"3\", \"/\", \"2\"}]], \"F\"}], \"=\", \"3\"}], \",\", \"mF\"}]},
+\"Ket\"]\)\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7701245968917503`*^9, 3.7701245972994285`*^9}, {
+  3.770124709489586*^9, 3.7701247100783587`*^9}, {3.7701248554990225`*^9, 
+  3.7701249216264143`*^9}, {3.7701277786156197`*^9, 3.7701279617240715`*^9}, {
+  3.7701306140810423`*^9, 3.7701306148066883`*^9}, {3.771161143292368*^9, 
+  3.7711611469096622`*^9}, {3.771161514410375*^9, 3.7711615397952175`*^9}, {
+  3.771345890813924*^9, 3.7713458926051292`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      AbsoluteThickness[1.6], 
+     PointBox[{{-3., 1.7150545697279775`}, {-2., 3.556518036777604}, {-1., 
+      4.6613961170073805`}, {0., 5.029688810417306}, {1., 
+      4.6613961170073805`}, {2., 3.556518036777604}, {3., 
+      1.7150545697279775`}}]}, {}}, {}, {}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& )}},
+  PlotLabel->FormBox[
+   "\"Light shift in 1064 nm trap for \
+\\!\\(\\*TemplateBox[{RowBox[{\\\"5\\\", SubscriptBox[\\\"s\\\", \
+RowBox[{\\\"1\\\", \\\"/\\\", \\\"2\\\"}]]}]},\\n\\\"Ket\\\"]\\)\[Rule]\\!\\(\
+\\*TemplateBox[{RowBox[{RowBox[{RowBox[{\\\"5\\\", SubscriptBox[\\\"p\\\", \
+RowBox[{\\\"3\\\", \\\"/\\\", \\\"2\\\"}]], \\\"F\\\"}], \\\"=\\\", \
+\\\"3\\\"}], \\\",\\\", \\\"mF\\\"}]},\\n\\\"Ket\\\"]\\)\"", TraditionalForm],
+  PlotRange->{{-3., 3.}, {0, 5.029688810417306}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.7711615576621823`*^9, 3.7713454470081215`*^9, 3.7713457724519615`*^9, {
+   3.771345880483539*^9, 3.771345920153674*^9}}]
+}, Open  ]],
+
+Cell["\<\
+These Stark shifts are all positive so atoms left in the excited state will \
+be repulsed by the FORT. When chopping the FORT and RO alternately it is \
+critical that the RO light is turned off for at least one lifetime (~ .16 \
+\[Mu]s) of the excited state so that the atoms decay to the ground state \
+before the FORT is turned back on. \
+\>", "Text",
+ CellChangeTimes->{{3.7711615708150687`*^9, 3.7711615715654774`*^9}, {
+  3.771161665619266*^9, 3.771161676693472*^9}, {3.771183254709529*^9, 
+  3.7711834275128126`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ " ",
+ StyleBox["FORT trap depth",
+  FontWeight->"Bold"]
+}], "Subsubsection",
+ CellChangeTimes->{{3.771183488612507*^9, 3.7711835010313716`*^9}, {
+  3.771183534641652*^9, 3.7711835347923956`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"r2power", " ", "=", " ", 
+    RowBox[{".4", "*", ".384"}]}], " ", ";"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"40", "%", " ", "in", " ", "0", " ", "order"}], ",", " ", 
+    RowBox[{
+    "384", " ", "mW", " ", "measured", " ", "before", " ", "Jenoptik"}]}], 
+   "*)"}]}]], "Input",
+ CellChangeTimes->{{3.771192231960924*^9, 3.7711923092052994`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GroundStateShiftJ", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"-", 
+    FractionBox["1", "4"]}], "\[Alpha]05sOneHalf", " ", 
+   SuperscriptBox[
+    RowBox[{"Efield", "[", "r2power", "]"}], "2"], 
+   RowBox[{"(*", 
+    RowBox[{"[", "J", "]"}], "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.771183619947092*^9, 3.7711836208612843`*^9}, {
+   3.7711836526620398`*^9, 3.7711836809793053`*^9}, 3.7711922232012033`*^9, {
+   3.771192313818413*^9, 3.7711923154259615`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", "3.1798739453763315`*^-26"}]], "Output",
+ CellChangeTimes->{3.771183622125394*^9, 3.7711836571314964`*^9, 
+  3.7711838926355724`*^9, 3.7711923162551565`*^9, 3.771245906754631*^9, 
+  3.7713454472923527`*^9, 3.7713457725117855`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Tdepth", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"-", "1000"}], "*", 
+   RowBox[{"GroundStateShiftJ", "/", "kB", " ", 
+    RowBox[{"(*", 
+     RowBox[{"the", " ", "FORT", " ", "\"\<depth\>\"", " ", 
+      RowBox[{"in", " ", "[", "mK", "]"}]}], "*)"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.7711836735801554`*^9, 3.7711836742090797`*^9}, {
+  3.7711839082905674`*^9, 3.7711839123017583`*^9}, {3.7711839449213123`*^9, 
+  3.771183961764179*^9}, {3.771192335602398*^9, 3.771192382507719*^9}, {
+  3.7712529353628063`*^9, 3.771252940999408*^9}}],
+
+Cell[BoxData["2.3030882489869855`"], "Output",
+ CellChangeTimes->{{3.771183913196005*^9, 3.7711839623220344`*^9}, {
+   3.771192318844267*^9, 3.77119234149716*^9}, 3.7711923829401417`*^9, 
+   3.771245313115861*^9, 3.771245909379754*^9, 3.771252941610423*^9, 
+   3.7713454473113265`*^9, 3.7713457725327272`*^9}]
+}, Open  ]],
+
+Cell["Mark\[CloseCurlyQuote]s example for Cs", "Text",
+ CellChangeTimes->{{3.77118363772069*^9, 3.7711836380693903`*^9}, {
+  3.771245617236763*^9, 3.7712456205827866`*^9}, {3.771245915408149*^9, 
+  3.771245916585656*^9}, {3.771346001621776*^9, 3.771346003687098*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Ef", "=", " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     FractionBox[
+      RowBox[{"4", " ", 
+       RowBox[{"(", ".01", ")"}]}], 
+      RowBox[{"c", " ", "\[Epsilon]0", " ", "\[Pi]", " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         SuperscriptBox["10", 
+          RowBox[{"-", "6"}]], ")"}], "2"]}]], ")"}], 
+    RowBox[{"1", "/", "2"}]]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7712456298302236`*^9, 3.7712456551936584`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox["1", "4"]}], 
+  RowBox[{"cgsToSI", "[", 
+   RowBox[{"(", 
+    RowBox[{"168", "*", 
+     SuperscriptBox["10", 
+      RowBox[{"-", "24"}]]}], ")"}], "]"}], " ", 
+  SuperscriptBox["Ef", "2"]}]], "Input",
+ CellChangeTimes->{{3.7712456807513037`*^9, 3.7712457135572915`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", "2.2409710874712373`*^-26"}]], "Output",
+ CellChangeTimes->{3.7712457170282593`*^9, 3.7713454473501997`*^9, 
+  3.771345772572055*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Atom escape times",
+ FontWeight->"Bold"]], "Subsubsection",
+ CellChangeTimes->{{3.7713460741161575`*^9, 3.7713460749766817`*^9}, {
+  3.77134615664669*^9, 3.771346164863436*^9}, {3.7713473893281784`*^9, 
+  3.7713473915372725`*^9}}],
+
+Cell["\<\
+Suppose an atom has some temperature T, in a trap of radius w0? What is the \
+shortest time it will take the atom to move outside of the beam cross-section \
+(perpendicular to the optical axis) if the beam is turned off?\
+\>", "Text",
+ CellChangeTimes->{{3.771346170129448*^9, 3.7713462685041513`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"vRMS", "[", "T_", "]"}], ":=", " ", 
+   SqrtBox[
+    FractionBox[
+     RowBox[{"2", " ", "kB", " ", "T"}], "m"]]}], ";", " ", 
+  RowBox[{"m", " ", "=", " "}]}]], "Input",
+ CellChangeTimes->{{3.7713473946319976`*^9, 3.771347438797282*^9}, {
+  3.7713474747489095`*^9, 3.7713474775673375`*^9}, {3.7713475412462406`*^9, 
+  3.7713475589875593`*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{766, 805},
+WindowMargins->{{Automatic, 368}, {Automatic, 48}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 210, 3, 70, "Section"],
+Cell[CellGroupData[{
+Cell[815, 29, 188, 2, 39, "Subsubsection"],
+Cell[1006, 33, 118, 1, 30, "Text"],
+Cell[1127, 36, 1015, 25, 88, "Input"],
+Cell[2145, 63, 555, 13, 69, "Input"],
+Cell[2703, 78, 1134, 25, 69, "Input"],
+Cell[3840, 105, 2883, 87, 175, "Input"],
+Cell[6726, 194, 775, 17, 55, "Input"],
+Cell[7504, 213, 452, 12, 50, "Input"],
+Cell[CellGroupData[{
+Cell[7981, 229, 871, 16, 30, "Input"],
+Cell[8855, 247, 284, 4, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9176, 256, 160, 3, 30, "Input"],
+Cell[9339, 261, 112, 1, 30, "Output"]
+}, Open  ]],
+Cell[9466, 265, 169, 2, 30, "Text"],
+Cell[CellGroupData[{
+Cell[9660, 271, 552, 10, 34, "Input"],
+Cell[10215, 283, 261, 3, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10513, 291, 626, 12, 53, "Input"],
+Cell[11142, 305, 496, 7, 30, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11687, 318, 189, 2, 39, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[11901, 324, 1196, 25, 69, "Input"],
+Cell[13100, 351, 1091, 26, 50, "Output"]
+}, Open  ]],
+Cell[14206, 380, 397, 7, 49, "Text"],
+Cell[CellGroupData[{
+Cell[14628, 391, 930, 20, 59, "Input"],
+Cell[15561, 413, 2550, 52, 274, "Output"]
+}, Open  ]],
+Cell[18126, 468, 158, 2, 30, "Text"],
+Cell[18287, 472, 1412, 33, 88, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19736, 510, 263, 4, 39, "Subsubsection"],
+Cell[20002, 516, 136, 1, 30, "Text"],
+Cell[CellGroupData[{
+Cell[20163, 521, 188, 3, 30, "Input"],
+Cell[20354, 526, 127, 2, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20518, 533, 709, 18, 88, "Input"],
+Cell[21230, 553, 793, 22, 50, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22060, 580, 929, 20, 59, "Input"],
+Cell[22992, 602, 2102, 46, 274, "Output"]
+}, Open  ]],
+Cell[25109, 651, 533, 9, 87, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25679, 665, 212, 6, 39, "Subsubsection"],
+Cell[25894, 673, 400, 11, 30, "Input"],
+Cell[CellGroupData[{
+Cell[26319, 688, 482, 11, 53, "Input"],
+Cell[26804, 701, 258, 4, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27099, 710, 560, 11, 30, "Input"],
+Cell[27662, 723, 309, 4, 30, "Output"]
+}, Open  ]],
+Cell[27986, 730, 267, 3, 30, "Text"],
+Cell[28256, 735, 476, 14, 58, "Input"],
+Cell[CellGroupData[{
+Cell[28757, 753, 325, 10, 53, "Input"],
+Cell[29085, 765, 161, 3, 30, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29295, 774, 254, 4, 39, "Subsubsection"],
+Cell[29552, 780, 312, 5, 68, "Text"],
+Cell[29867, 787, 391, 10, 70, "Input"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
